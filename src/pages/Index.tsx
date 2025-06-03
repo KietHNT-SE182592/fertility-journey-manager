@@ -6,18 +6,22 @@ import Services from "@/components/Services";
 import Doctors from "@/components/Doctors";
 import Blog from "@/components/Blog";
 import Footer from "@/components/Footer";
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import CustomerSidebar from "@/components/customer/CustomerSidebar";
 import ProfileManagement from "@/components/customer/ProfileManagement";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
 
 const Index = () => {
   // Simulate login state - in real app this would come from auth context
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState("home");
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUserRole(null);
+    setActiveSection("home");
+    console.log("Customer logged out");
+  };
 
   const renderCustomerContent = () => {
     switch (activeSection) {
@@ -61,23 +65,12 @@ const Index = () => {
     return (
       <SidebarProvider>
         <div className="min-h-screen flex w-full">
-          {/* Toggle Button */}
-          <Button
-            variant="outline"
-            size="sm"
-            className="fixed top-4 left-4 z-50 bg-white shadow-lg"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-          >
-            {sidebarOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-          </Button>
-
-          {/* Sidebar */}
-          <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out fixed left-0 top-0 h-full z-40`}>
-            <CustomerSidebar 
-              activeSection={activeSection} 
-              onSectionChange={setActiveSection} 
-            />
-          </div>
+          {/* Left Navigation Sidebar */}
+          <CustomerSidebar 
+            activeSection={activeSection} 
+            onSectionChange={setActiveSection}
+            onLogout={handleLogout}
+          />
 
           {/* Main Content */}
           <div className="flex-1 overflow-auto">

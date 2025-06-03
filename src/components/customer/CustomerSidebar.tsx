@@ -1,5 +1,5 @@
 
-import { Calendar, User, Heart, FileText, LogOut } from "lucide-react";
+import { Calendar, User, Heart, FileText, LogOut, Home } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -17,12 +17,18 @@ import { Button } from "@/components/ui/button";
 interface CustomerSidebarProps {
   activeSection: string;
   onSectionChange: (section: string) => void;
+  onLogout: () => void;
 }
 
-const CustomerSidebar = ({ activeSection, onSectionChange }: CustomerSidebarProps) => {
+const CustomerSidebar = ({ activeSection, onSectionChange, onLogout }: CustomerSidebarProps) => {
   const menuItems = [
     {
-      title: "Appointments",
+      title: "Home",
+      icon: Home,
+      key: "home"
+    },
+    {
+      title: "My Appointments",
       icon: Calendar,
       key: "appointments"
     },
@@ -43,14 +49,8 @@ const CustomerSidebar = ({ activeSection, onSectionChange }: CustomerSidebarProp
     }
   ];
 
-  const handleLogout = () => {
-    console.log("Logging out...");
-    // Navigate to home page
-    window.location.href = "/";
-  };
-
   return (
-    <Sidebar>
+    <Sidebar className="w-64">
       <SidebarHeader>
         <div className="flex items-center space-x-2 p-2">
           <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-teal-500 rounded-lg flex items-center justify-center">
@@ -65,7 +65,7 @@ const CustomerSidebar = ({ activeSection, onSectionChange }: CustomerSidebarProp
       
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Menu</SidebarGroupLabel>
+          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
@@ -87,7 +87,7 @@ const CustomerSidebar = ({ activeSection, onSectionChange }: CustomerSidebarProp
       <SidebarFooter>
         <Button 
           variant="outline" 
-          onClick={handleLogout}
+          onClick={onLogout}
           className="w-full"
         >
           <LogOut className="w-4 h-4 mr-2" />
