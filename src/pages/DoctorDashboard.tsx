@@ -4,14 +4,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, TestTube, Users, FileText, Clock, Plus } from "lucide-react";
+import { Calendar, TestTube, Users, FileText, Clock, Plus, LogOut } from "lucide-react";
 import TestManagement from "@/components/doctor/TestManagement";
 import TreatmentPlanManagement from "@/components/doctor/TreatmentPlanManagement";
-import BioSampleManagement from "@/components/doctor/BioSampleManagement";
 import ScheduleManagement from "@/components/doctor/ScheduleManagement";
 
 const DoctorDashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");
+
+  const handleLogout = () => {
+    console.log("Logging out...");
+    window.location.href = "/";
+  };
 
   const dashboardStats = [
     { title: "Active Patients", value: "24", icon: Users, color: "blue" },
@@ -29,17 +33,22 @@ const DoctorDashboard = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-teal-50">
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Doctor Dashboard</h1>
-          <p className="text-gray-600">Manage your patients and treatments</p>
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Doctor Dashboard</h1>
+            <p className="text-gray-600">Manage your patients and treatments</p>
+          </div>
+          <Button variant="outline" onClick={handleLogout}>
+            <LogOut className="w-4 h-4 mr-2" />
+            Logout
+          </Button>
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="tests">Tests</TabsTrigger>
             <TabsTrigger value="treatments">Treatment Plans</TabsTrigger>
-            <TabsTrigger value="biosamples">Bio Samples</TabsTrigger>
             <TabsTrigger value="schedule">Schedule</TabsTrigger>
           </TabsList>
 
@@ -88,10 +97,6 @@ const DoctorDashboard = () => {
 
           <TabsContent value="treatments">
             <TreatmentPlanManagement />
-          </TabsContent>
-
-          <TabsContent value="biosamples">
-            <BioSampleManagement />
           </TabsContent>
 
           <TabsContent value="schedule">

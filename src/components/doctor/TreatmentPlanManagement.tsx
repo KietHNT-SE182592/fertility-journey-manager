@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Heart, Plus, Search, Calendar, User } from "lucide-react";
+import { Heart, Plus, Search, Calendar, User, TestTube, ArrowLeft } from "lucide-react";
 import TreatmentPlanDetails from "./TreatmentPlanDetails";
 
 const TreatmentPlanManagement = () => {
@@ -22,7 +22,17 @@ const TreatmentPlanManagement = () => {
       startDate: "2024-01-15",
       currentStep: "Ovarian Stimulation",
       status: "In Progress",
-      progress: 60
+      progress: 60,
+      bioSamples: [
+        {
+          id: 1,
+          name: "Embryo Sample #001",
+          type: "Embryo",
+          quality: "Grade A",
+          status: "Stored",
+          location: "Tank A-001"
+        }
+      ]
     },
     {
       id: 2,
@@ -31,7 +41,8 @@ const TreatmentPlanManagement = () => {
       startDate: "2024-02-01",
       currentStep: "Pending Patient Confirmation",
       status: "Pending Confirmation",
-      progress: 0
+      progress: 0,
+      bioSamples: []
     },
     {
       id: 3,
@@ -40,7 +51,17 @@ const TreatmentPlanManagement = () => {
       startDate: "2023-11-15",
       currentStep: "Treatment Complete",
       status: "Completed",
-      progress: 100
+      progress: 100,
+      bioSamples: [
+        {
+          id: 2,
+          name: "Sperm Sample #045",
+          type: "Sperm",
+          quality: "Good",
+          status: "Used",
+          location: "Tank B-012"
+        }
+      ]
     }
   ];
 
@@ -110,7 +131,7 @@ const TreatmentPlanManagement = () => {
                   The treatment plan will be sent to the patient for confirmation and payment before becoming active.
                 </p>
               </div>
-              <Button onClick={handleCreatePlan} className="w-full">
+              <Button onClick={() => setShowCreatePlan(false)} className="w-full">
                 Create Plan (Pending Patient Confirmation)
               </Button>
             </div>
@@ -160,6 +181,18 @@ const TreatmentPlanManagement = () => {
                   </div>
                 </div>
 
+                {plan.bioSamples.length > 0 && (
+                  <div className="bg-gray-50 p-3 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <TestTube className="w-4 h-4 text-blue-600" />
+                      <span className="text-sm font-medium">Bio Samples: {plan.bioSamples.length}</span>
+                    </div>
+                    <div className="text-xs text-gray-600">
+                      {plan.bioSamples.map(sample => sample.name).join(", ")}
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex space-x-3">
                   {plan.status === "In Progress" ? (
                     <>
@@ -168,7 +201,7 @@ const TreatmentPlanManagement = () => {
                         className="bg-gradient-to-r from-blue-600 to-teal-600"
                         onClick={() => handleViewDetails(plan)}
                       >
-                        Manage Treatment Details
+                        Manage Treatment Details & Bio Samples
                       </Button>
                       <Button variant="outline" size="sm">
                         Contact Patient
@@ -189,7 +222,7 @@ const TreatmentPlanManagement = () => {
                       size="sm"
                       onClick={() => handleViewDetails(plan)}
                     >
-                      View Completed Plan
+                      View Completed Plan & Bio Samples
                     </Button>
                   )}
                 </div>
