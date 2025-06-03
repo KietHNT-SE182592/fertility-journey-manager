@@ -1,5 +1,5 @@
 
-import { Calendar, User, Heart, FileText, LogOut, Home } from "lucide-react";
+import { Calendar, User, Heart, FileText, LogOut, Home, CreditCard } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -41,6 +41,11 @@ const CustomerSidebar = ({ activeSection, onSectionChange, onLogout }: CustomerS
       title: "Test Results",
       icon: FileText,
       key: "tests"
+    },
+    {
+      title: "Payment History",
+      icon: CreditCard,
+      key: "payments"
     },
     {
       title: "Manage Profile",
