@@ -3,7 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Star, Calendar, Award, MapPin } from "lucide-react";
+import { Star, Calendar, Award, MapPin, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Doctors = () => {
   const doctors = [
@@ -18,7 +19,8 @@ const Doctors = () => {
       certifications: ["Board Certified RE&I", "Fellow ASRM"],
       specialties: ["IVF", "ICSI", "Egg Freezing"],
       bio: "Dr. Johnson specializes in complex fertility cases and has helped over 500 families achieve their dreams of parenthood.",
-      location: "Main Campus"
+      location: "Main Campus",
+      detailLink: "/doctors/sarah-johnson"
     },
     {
       id: 2,
@@ -31,7 +33,8 @@ const Doctors = () => {
       certifications: ["Board Certified OB-GYN", "Fellowship trained"],
       specialties: ["IUI", "Natural Cycle IVF", "Male Factor"],
       bio: "Dr. Chen focuses on minimally invasive fertility treatments and personalized care approaches.",
-      location: "Main Campus"
+      location: "Main Campus",
+      detailLink: "/doctors/michael-chen"
     },
     {
       id: 3,
@@ -44,7 +47,8 @@ const Doctors = () => {
       certifications: ["Board Certified RE&I", "Laparoscopic Surgery"],
       specialties: ["Endometriosis", "Fibroids", "Tubal Surgery"],
       bio: "Dr. Rodriguez is renowned for her expertise in reproductive surgery and complex fertility cases.",
-      location: "Surgical Center"
+      location: "Surgical Center",
+      detailLink: "/doctors/emily-rodriguez"
     },
     {
       id: 4,
@@ -57,7 +61,8 @@ const Doctors = () => {
       certifications: ["Board Certified Urology", "Andrology Fellowship"],
       specialties: ["Male Factor", "Sperm Retrieval", "Vasectomy Reversal"],
       bio: "Dr. Wilson specializes in male fertility issues and advanced sperm retrieval techniques.",
-      location: "Men's Health Center"
+      location: "Men's Health Center",
+      detailLink: "/doctors/james-wilson"
     }
   ];
 
@@ -145,9 +150,12 @@ const Doctors = () => {
                     <Calendar className="w-4 h-4 mr-2" />
                     Book Appointment
                   </Button>
-                  <Button variant="outline" className="border-blue-200 text-blue-700 hover:bg-blue-50">
-                    View Profile
-                  </Button>
+                  <Link to={doctor.detailLink} className="flex-1">
+                    <Button variant="outline" className="w-full border-blue-200 text-blue-700 hover:bg-blue-50">
+                      <ArrowRight className="w-4 h-4 mr-2" />
+                      View Profile
+                    </Button>
+                  </Link>
                 </div>
               </CardContent>
             </Card>

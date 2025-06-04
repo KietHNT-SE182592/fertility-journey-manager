@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Heart, Menu, LogIn, ChevronDown } from "lucide-react";
+import { Menu, LogIn, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -14,16 +14,10 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const servicesDropdown = [
-    { name: "IUI Treatment", href: "#services" },
-    { name: "IVF Treatment", href: "#services" },
-    { name: "Fertility Assessment", href: "#services" },
-    { name: "Egg Freezing", href: "#services" },
-  ];
-
-  const doctorsDropdown = [
-    { name: "Meet Our Team", href: "#doctors" },
-    { name: "Book Consultation", href: "#doctors" },
-    { name: "Specialist Areas", href: "#doctors" },
+    { name: "IUI Treatment", href: "/services/iui" },
+    { name: "IVF Treatment", href: "/services/ivf" },
+    { name: "Fertility Assessment", href: "/services/assessment" },
+    { name: "Egg Freezing", href: "/services/egg-freezing" },
   ];
 
   return (
@@ -32,8 +26,12 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-teal-500 rounded-xl flex items-center justify-center shadow-lg">
-              <Heart className="w-7 h-7 text-white" />
+            <div className="w-12 h-12 overflow-hidden rounded-xl shadow-lg">
+              <img 
+                src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80" 
+                alt="FertileCare Logo" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-gray-900">FertileCare</h1>
@@ -54,32 +52,21 @@ const Header = () => {
               <DropdownMenuContent className="w-56 bg-white border border-gray-200 shadow-xl">
                 {servicesDropdown.map((item) => (
                   <DropdownMenuItem key={item.name} asChild>
-                    <a href={item.href} className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                    <Link to={item.href} className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
                       {item.name}
-                    </a>
+                    </Link>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center text-gray-700 hover:text-blue-600 transition-colors font-medium">
-                Doctors <ChevronDown className="w-4 h-4 ml-1" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 bg-white border border-gray-200 shadow-xl">
-                {doctorsDropdown.map((item) => (
-                  <DropdownMenuItem key={item.name} asChild>
-                    <a href={item.href} className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                      {item.name}
-                    </a>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            <a href="#blog" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link to="/doctors" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+              Doctors
+            </Link>
+            
+            <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Blog
-            </a>
+            </Link>
             <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Contact
             </a>
@@ -112,8 +99,8 @@ const Header = () => {
             <nav className="flex flex-col space-y-3 mt-4">
               <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Home</a>
               <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Services</a>
-              <a href="#doctors" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Doctors</a>
-              <a href="#blog" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Blog</a>
+              <Link to="/doctors" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Doctors</Link>
+              <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Blog</Link>
               <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Contact</a>
             </nav>
             <div className="flex flex-col space-y-2 mt-4">
