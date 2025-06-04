@@ -50,6 +50,11 @@ const Header = () => {
                 Services <ChevronDown className="w-4 h-4 ml-1" />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56 bg-white border border-gray-200 shadow-xl">
+                <DropdownMenuItem asChild>
+                  <Link to="/services" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                    All Services
+                  </Link>
+                </DropdownMenuItem>
                 {servicesDropdown.map((item) => (
                   <DropdownMenuItem key={item.name} asChild>
                     <Link to={item.href} className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
@@ -98,7 +103,7 @@ const Header = () => {
           <div className="md:hidden mt-4 pb-4 border-t border-blue-100">
             <nav className="flex flex-col space-y-3 mt-4">
               <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Home</a>
-              <a href="#services" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Services</a>
+              <Link to="/services" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Services</Link>
               <Link to="/doctors" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Doctors</Link>
               <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Blog</Link>
               <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Contact</a>
