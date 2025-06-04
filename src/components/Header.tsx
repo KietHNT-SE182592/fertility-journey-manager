@@ -26,7 +26,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <div className="w-16 h-16 md:w-20 md:h-20 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div className="w-20 h-20 md:w-24 md:h-24 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <img 
                 src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" 
                 alt="FertileCare Logo" 
@@ -64,9 +64,10 @@ const Header = () => {
             <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
               Blog
             </Link>
-            <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              Contact
-            </a>
+            
+            <Link to="/about-us" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+              About Us
+            </Link>
           </nav>
 
           {/* Action Buttons */}
@@ -97,7 +98,7 @@ const Header = () => {
               <Link to="/services" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Services</Link>
               <Link to="/doctors" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Doctors</Link>
               <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Blog</Link>
-              <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Contact</a>
+              <Link to="/about-us" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">About Us</Link>
             </nav>
             <div className="flex flex-col space-y-2 mt-4">
               <Link to="/login">
