@@ -1,5 +1,6 @@
+
 import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
+import { Calendar, Heart, Shield, Users } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import BookingModal from "./BookingModal";
