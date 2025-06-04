@@ -25,26 +25,18 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="w-12 h-12 overflow-hidden rounded-xl shadow-lg">
+          <Link to="/" className="flex-shrink-0">
+            <div className="w-16 h-16 md:w-20 md:h-20 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <img 
-                src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100&q=80" 
+                src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" 
                 alt="FertileCare Logo" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">FertileCare</h1>
-              <p className="text-xs text-gray-500 font-medium">Fertility Center</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
-              Home
-            </a>
-            
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center text-gray-700 hover:text-blue-600 transition-colors font-medium">
                 Services <ChevronDown className="w-4 h-4 ml-1" />
@@ -102,7 +94,6 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t border-blue-100">
             <nav className="flex flex-col space-y-3 mt-4">
-              <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Home</a>
               <Link to="/services" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Services</Link>
               <Link to="/doctors" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Doctors</Link>
               <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Blog</Link>

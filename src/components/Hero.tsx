@@ -1,7 +1,7 @@
-
 import { Button } from "@/components/ui/button";
-import { Calendar, Heart, Shield, Users, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import BookingModal from "./BookingModal";
 
 const Hero = () => {
@@ -40,14 +40,6 @@ const Hero = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
   const handleBookingClick = (serviceType: string) => {
     setSelectedService({ 
       name: serviceType === 'consultation' ? 'General Consultation' : 'Doctor Appointment', 
@@ -68,20 +60,6 @@ const Hero = () => {
         >
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
-
-        {/* Navigation Arrows */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
 
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4 py-20 min-h-screen flex items-center">
@@ -106,14 +84,15 @@ const Hero = () => {
                   <Calendar className="w-5 h-5 mr-2" />
                   Schedule Consultation
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="border-white text-white hover:bg-white hover:text-gray-900 text-lg px-8"
-                  onClick={() => handleBookingClick('doctor')}
-                >
-                  Book Appointment with Doctor
-                </Button>
+                <Link to="/services">
+                  <Button 
+                    variant="outline" 
+                    size="lg" 
+                    className="border-white text-white bg-white/10 text-lg px-8 w-full"
+                  >
+                    Service
+                  </Button>
+                </Link>
               </div>
 
               {/* Stats */}

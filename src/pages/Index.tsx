@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Doctors from "@/components/Doctors";
 import Blog from "@/components/Blog";
+import WhyChooseUs from "@/components/WhyChooseUs";
 import Footer from "@/components/Footer";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import CustomerSidebar from "@/components/customer/CustomerSidebar";
@@ -54,6 +55,7 @@ const Index = () => {
           <div className="min-h-screen">
             <Hero />
             <Services />
+            <WhyChooseUs />
             <Doctors />
             <Blog />
           </div>
@@ -88,6 +90,7 @@ const Index = () => {
       <Header />
       <Hero />
       <Services />
+      <WhyChooseUs />
       <Doctors />
       <Blog />
       <Footer />
