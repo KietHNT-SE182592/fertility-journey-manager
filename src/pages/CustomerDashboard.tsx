@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -13,16 +13,10 @@ import FeedbackModal from "@/components/customer/FeedbackModal";
 import TreatmentPlanDetails from "@/components/customer/TreatmentPlanDetails";
 
 const CustomerDashboard = () => {
-  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("home");
   const [showFeedback, setShowFeedback] = useState(false);
   const [selectedTreatment, setSelectedTreatment] = useState<any>(null);
   const [selectedPlanForDetails, setSelectedPlanForDetails] = useState<any>(null);
-
-  // Redirect to homepage for customer role - they browse as guest with dropdown access
-  useEffect(() => {
-    navigate("/");
-  }, [navigate]);
 
   const handleLogout = () => {
     console.log("Customer logged out");

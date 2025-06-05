@@ -1,26 +1,17 @@
 
 import { Button } from "@/components/ui/button";
-import { Menu, LogIn, ChevronDown, User } from "lucide-react";
+import { Menu, LogIn, ChevronDown } from "lucide-react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
-interface HeaderProps {
-  isLoggedIn?: boolean;
-  userRole?: string;
-  onLogout?: () => void;
-}
-
-const Header = ({ isLoggedIn = false, userRole, onLogout }: HeaderProps) => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   const servicesDropdown = [
     { name: "IUI Treatment", href: "/services/iui" },
@@ -29,24 +20,13 @@ const Header = ({ isLoggedIn = false, userRole, onLogout }: HeaderProps) => {
     { name: "Egg Freezing", href: "/services/egg-freezing" },
   ];
 
-  const handleCustomerMenuClick = (path: string) => {
-    navigate(path);
-  };
-
-  const handleLogout = () => {
-    if (onLogout) {
-      onLogout();
-    }
-    navigate("/");
-  };
-
   return (
     <header className="bg-white/98 backdrop-blur-lg border-b border-blue-100 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <div className="w-24 h-24 md:w-28 md:h-28 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div className="w-20 h-20 md:w-24 md:h-24 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <img 
                 src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" 
                 alt="FertileCare Logo" 
@@ -92,47 +72,12 @@ const Header = ({ isLoggedIn = false, userRole, onLogout }: HeaderProps) => {
 
           {/* Action Buttons */}
           <div className="hidden md:flex items-center space-x-3">
-            {isLoggedIn && userRole === "customer" ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="p-1">
-                    <Avatar className="w-10 h-10">
-                      <AvatarFallback className="bg-gradient-to-br from-blue-500 to-teal-500 text-white">
-                        <User className="w-5 h-5" />
-                      </AvatarFallback>
-                    </Avatar>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56 bg-white border border-gray-200 shadow-xl" align="end">
-                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
-                    My Appointments
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
-                    Treatment Plans
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
-                    Test Results
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
-                    Payment History
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
-                    Profile Management
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={handleLogout}>
-                    Logout
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Link to="/login">
-                <Button size="sm" className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 shadow-lg">
-                  <LogIn className="w-4 h-4 mr-2" />
-                  Login
-                </Button>
-              </Link>
-            )}
+            <Link to="/login">
+              <Button size="sm" className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 shadow-lg">
+                <LogIn className="w-4 h-4 mr-2" />
+                Login
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -156,23 +101,12 @@ const Header = ({ isLoggedIn = false, userRole, onLogout }: HeaderProps) => {
               <Link to="/about-us" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">About Us</Link>
             </nav>
             <div className="flex flex-col space-y-2 mt-4">
-              {isLoggedIn && userRole === "customer" ? (
-                <div className="space-y-2">
-                  <Button variant="ghost" className="w-full justify-start" onClick={() => handleCustomerMenuClick("/customer")}>
-                    My Dashboard
-                  </Button>
-                  <Button variant="ghost" className="w-full justify-start" onClick={handleLogout}>
-                    Logout
-                  </Button>
-                </div>
-              ) : (
-                <Link to="/login">
-                  <Button size="sm" className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700">
-                    <LogIn className="w-4 h-4 mr-2" />
-                    Login
-                  </Button>
-                </Link>
-              )}
+              <Link to="/login">
+                <Button size="sm" className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700">
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Login
+                </Button>
+              </Link>
             </div>
           </div>
         )}
