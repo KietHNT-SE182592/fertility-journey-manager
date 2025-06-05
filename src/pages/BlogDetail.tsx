@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -6,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Clock, Calendar, Share2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BreadcrumbNav from "@/components/Breadcrumb";
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -88,6 +88,7 @@ Emma's first IVF cycle resulted in 8 high-quality embryos. We transferred one em
     return (
       <div className="min-h-screen bg-gray-50">
         <Header />
+        <BreadcrumbNav items={[{ label: "Blog", href: "/blog" }, { label: "Post Not Found" }]} />
         <div className="container mx-auto px-4 py-12 text-center">
           <h1 className="text-2xl font-bold mb-4">Blog Post Not Found</h1>
           <Link to="/blog">
@@ -99,9 +100,15 @@ Emma's first IVF cycle resulted in 8 high-quality embryos. We transferred one em
     );
   }
 
+  const breadcrumbItems = [
+    { label: "Blog", href: "/blog" },
+    { label: post.title }
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
+      <BreadcrumbNav items={breadcrumbItems} />
       
       <div className="container mx-auto px-4 py-12">
         <div className="mb-8">

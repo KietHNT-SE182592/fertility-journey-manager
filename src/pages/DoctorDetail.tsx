@@ -1,4 +1,3 @@
-
 import { useParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,6 +6,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { ArrowLeft, Calendar, Star, Award, MapPin, GraduationCap, Clock } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BreadcrumbNav from "@/components/Breadcrumb";
 
 const DoctorDetail = () => {
   const { id } = useParams();
@@ -66,6 +66,7 @@ const DoctorDetail = () => {
     return (
       <div className="min-h-screen bg-gray-50">
         <Header />
+        <BreadcrumbNav items={[{ label: "Doctors", href: "/doctors" }, { label: "Doctor Not Found" }]} />
         <div className="container mx-auto px-4 py-12 text-center">
           <h1 className="text-2xl font-bold mb-4">Doctor Not Found</h1>
           <Link to="/doctors">
@@ -77,9 +78,15 @@ const DoctorDetail = () => {
     );
   }
 
+  const breadcrumbItems = [
+    { label: "Doctors", href: "/doctors" },
+    { label: doctor.name }
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
+      <BreadcrumbNav items={breadcrumbItems} />
       
       <div className="container mx-auto px-4 py-12">
         <div className="mb-8">

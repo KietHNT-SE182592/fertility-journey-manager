@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Calendar, Heart, Shield, Users } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import BookingModal from "./BookingModal";
@@ -64,9 +64,8 @@ const Hero = () => {
 
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4 py-20 min-h-screen flex items-center">
-          <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
-            {/* Text Content */}
-            <div className="space-y-8 text-white">
+          <div className="max-w-2xl text-white">
+            <div className="space-y-8">
               <div>
                 <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6">
                   {currentSlideData.title}
@@ -109,48 +108,6 @@ const Hero = () => {
                 <div className="text-center">
                   <div className="text-3xl font-bold text-white">{currentSlideData.stats.experience || currentSlideData.stats.specialists || currentSlideData.stats.years}</div>
                   <div className="text-sm text-white/80">{currentSlideData.stats.experience ? 'Years Experience' : currentSlideData.stats.specialists ? 'Expert Specialists' : 'Years Serving'}</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Visual Card */}
-            <div className="relative">
-              <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-2xl p-8 space-y-6 border border-white/20">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-teal-500 rounded-full flex items-center justify-center">
-                    <Heart className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white">Comprehensive Care</h3>
-                    <p className="text-white/80 text-sm">Personalized treatment plans</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-blue-500 rounded-full flex items-center justify-center">
-                    <Shield className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white">Expert Specialists</h3>
-                    <p className="text-white/80 text-sm">Board-certified fertility doctors</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-blue-500 rounded-full flex items-center justify-center">
-                    <Users className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white">Support Network</h3>
-                    <p className="text-white/80 text-sm">Emotional & medical support</p>
-                  </div>
-                </div>
-
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mt-6 border border-white/20">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-white mb-2">Free Consultation</div>
-                    <p className="text-white/80 text-sm">Start your journey with a complimentary assessment</p>
-                  </div>
                 </div>
               </div>
             </div>
