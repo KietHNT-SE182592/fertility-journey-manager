@@ -22,7 +22,8 @@ const Login = () => {
           navigate("/doctor");
           break;
         case "customer":
-          navigate("/customer");
+          // Redirect patients to homepage instead of dashboard
+          navigate("/");
           break;
         case "manager":
           navigate("/manager");
