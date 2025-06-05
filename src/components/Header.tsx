@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Menu, LogIn, ChevronDown, User, Calendar, Heart, TestTube, CreditCard, Settings } from "lucide-react";
+import { Menu, LogIn, ChevronDown, User } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -29,7 +29,7 @@ const Header = ({ isLoggedIn = false, userRole, onLogout }: HeaderProps) => {
     { name: "Egg Freezing", href: "/services/egg-freezing" },
   ];
 
-  const handlePatientMenuClick = (path: string) => {
+  const handleCustomerMenuClick = (path: string) => {
     navigate(path);
   };
 
@@ -104,29 +104,24 @@ const Header = ({ isLoggedIn = false, userRole, onLogout }: HeaderProps) => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 bg-white border border-gray-200 shadow-xl" align="end">
-                  <DropdownMenuItem onClick={() => handlePatientMenuClick("/customer")}>
-                    <span>My Appointments</span>
-                    <Calendar className="w-4 h-4 ml-auto" />
+                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
+                    My Appointments
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handlePatientMenuClick("/customer")}>
-                    <span>Treatment Plans</span>
-                    <Heart className="w-4 h-4 ml-auto" />
+                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
+                    Treatment Plans
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handlePatientMenuClick("/customer")}>
-                    <span>Test Results</span>
-                    <TestTube className="w-4 h-4 ml-auto" />
+                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
+                    Test Results
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handlePatientMenuClick("/customer")}>
-                    <span>Payment History</span>
-                    <CreditCard className="w-4 h-4 ml-auto" />
+                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
+                    Payment History
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handlePatientMenuClick("/customer")}>
-                    <span>Profile Management</span>
-                    <Settings className="w-4 h-4 ml-auto" />
+                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
+                    Profile Management
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout}>
-                    <span>Logout</span>
+                    Logout
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -163,7 +158,7 @@ const Header = ({ isLoggedIn = false, userRole, onLogout }: HeaderProps) => {
             <div className="flex flex-col space-y-2 mt-4">
               {isLoggedIn && userRole === "customer" ? (
                 <div className="space-y-2">
-                  <Button variant="ghost" className="w-full justify-start" onClick={() => handlePatientMenuClick("/customer")}>
+                  <Button variant="ghost" className="w-full justify-start" onClick={() => handleCustomerMenuClick("/customer")}>
                     My Dashboard
                   </Button>
                   <Button variant="ghost" className="w-full justify-start" onClick={handleLogout}>
