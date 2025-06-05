@@ -40,18 +40,6 @@ const Index = () => {
       <Doctors />
       <Blog />
       <Footer />
-      
-      {/* Temporary login buttons for testing - remove in production */}
-      {!isLoggedIn && (
-        <div className="fixed bottom-4 right-4 space-y-2">
-          <button 
-            onClick={() => handleLogin("customer")}
-            className="block bg-blue-600 text-white px-4 py-2 rounded shadow-lg"
-          >
-            Test Login as Customer
-          </button>
-        </div>
-      )}
     </div>
   );
 };

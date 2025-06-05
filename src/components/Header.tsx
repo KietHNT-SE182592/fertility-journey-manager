@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Menu, LogIn, ChevronDown, User } from "lucide-react";
+import { Menu, LogIn, ChevronDown, User, Calendar, FileText, TestTube, CreditCard, Settings } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -46,7 +46,7 @@ const Header = ({ isLoggedIn = false, userRole, onLogout }: HeaderProps) => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <div className="w-24 h-24 md:w-28 md:h-28 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div className="w-28 h-28 md:w-32 md:h-32 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <img 
                 src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" 
                 alt="FertileCare Logo" 
@@ -104,24 +104,39 @@ const Header = ({ isLoggedIn = false, userRole, onLogout }: HeaderProps) => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56 bg-white border border-gray-200 shadow-xl" align="end">
-                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
-                    My Appointments
+                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer/appointments")}>
+                    <div className="flex items-center justify-between w-full">
+                      <span>My Appointments</span>
+                      <Calendar className="w-4 h-4" />
+                    </div>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
-                    Treatment Plans
+                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer/treatments")}>
+                    <div className="flex items-center justify-between w-full">
+                      <span>Treatment Plans</span>
+                      <FileText className="w-4 h-4" />
+                    </div>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
-                    Test Results
+                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer/tests")}>
+                    <div className="flex items-center justify-between w-full">
+                      <span>Test Results</span>
+                      <TestTube className="w-4 h-4" />
+                    </div>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
-                    Payment History
+                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer/payments")}>
+                    <div className="flex items-center justify-between w-full">
+                      <span>Payment History</span>
+                      <CreditCard className="w-4 h-4" />
+                    </div>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer")}>
-                    Profile Management
+                  <DropdownMenuItem onClick={() => handleCustomerMenuClick("/customer/profile")}>
+                    <div className="flex items-center justify-between w-full">
+                      <span>Profile Management</span>
+                      <Settings className="w-4 h-4" />
+                    </div>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout}>
-                    Logout
+                    <span>Logout</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -158,8 +173,20 @@ const Header = ({ isLoggedIn = false, userRole, onLogout }: HeaderProps) => {
             <div className="flex flex-col space-y-2 mt-4">
               {isLoggedIn && userRole === "customer" ? (
                 <div className="space-y-2">
-                  <Button variant="ghost" className="w-full justify-start" onClick={() => handleCustomerMenuClick("/customer")}>
-                    My Dashboard
+                  <Button variant="ghost" className="w-full justify-start" onClick={() => handleCustomerMenuClick("/customer/appointments")}>
+                    My Appointments
+                  </Button>
+                  <Button variant="ghost" className="w-full justify-start" onClick={() => handleCustomerMenuClick("/customer/treatments")}>
+                    Treatment Plans
+                  </Button>
+                  <Button variant="ghost" className="w-full justify-start" onClick={() => handleCustomerMenuClick("/customer/tests")}>
+                    Test Results
+                  </Button>
+                  <Button variant="ghost" className="w-full justify-start" onClick={() => handleCustomerMenuClick("/customer/payments")}>
+                    Payment History
+                  </Button>
+                  <Button variant="ghost" className="w-full justify-start" onClick={() => handleCustomerMenuClick("/customer/profile")}>
+                    Profile Management
                   </Button>
                   <Button variant="ghost" className="w-full justify-start" onClick={handleLogout}>
                     Logout
