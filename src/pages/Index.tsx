@@ -7,93 +7,51 @@ import Doctors from "@/components/Doctors";
 import Blog from "@/components/Blog";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Footer from "@/components/Footer";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import CustomerSidebar from "@/components/customer/CustomerSidebar";
-import ProfileManagement from "@/components/customer/ProfileManagement";
+import BreadcrumbNav from "@/components/Breadcrumb";
 
 const Index = () => {
   // Simulate login state - in real app this would come from auth context
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
-  const [activeSection, setActiveSection] = useState("home");
 
   const handleLogout = () => {
     setIsLoggedIn(false);
     setUserRole(null);
-    setActiveSection("home");
     console.log("Customer logged out");
   };
 
-  const renderCustomerContent = () => {
-    switch (activeSection) {
-      case "profile":
-        return <ProfileManagement />;
-      case "appointments":
-        return (
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">My Appointments</h2>
-            <p>Your scheduled appointments will appear here...</p>
-          </div>
-        );
-      case "treatments":
-        return (
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">My Treatment Plans</h2>
-            <p>Your treatment plans will appear here...</p>
-          </div>
-        );
-      case "tests":
-        return (
-          <div className="p-6">
-            <h2 className="text-2xl font-bold mb-4">My Test Results</h2>
-            <p>Your test results will appear here...</p>
-          </div>
-        );
-      case "home":
-      default:
-        return (
-          <div className="min-h-screen">
-            <Hero />
-            <Services />
-            <WhyChooseUs />
-            <Doctors />
-            <Blog />
-          </div>
-        );
-    }
+  // Simulate login for testing - remove in production
+  const handleLogin = (role: string) => {
+    setIsLoggedIn(true);
+    setUserRole(role);
   };
-
-  if (isLoggedIn && userRole === "customer") {
-    return (
-      <SidebarProvider>
-        <div className="min-h-screen flex w-full">
-          {/* Left Navigation Sidebar */}
-          <CustomerSidebar 
-            activeSection={activeSection} 
-            onSectionChange={setActiveSection}
-            onLogout={handleLogout}
-          />
-
-          {/* Main Content */}
-          <div className="flex-1 overflow-auto">
-            <Header />
-            {renderCustomerContent()}
-            <Footer />
-          </div>
-        </div>
-      </SidebarProvider>
-    );
-  }
 
   return (
     <div className="min-h-screen">
-      <Header />
+      <Header 
+        isLoggedIn={isLoggedIn} 
+        userRole={userRole} 
+        onLogout={handleLogout} 
+      />
+      <BreadcrumbNav items={[]} />
       <Hero />
       <Services />
       <WhyChooseUs />
       <Doctors />
       <Blog />
       <Footer />
+      
+      {/* Temporary login buttons for testing - remove in production */}
+      {!isLoggedIn && (
+        <div className="fixed bottom-4 right-4 space-y-2">
+          <button 
+            onClick={() => handleLogin("customer")}
+            className="block bg-blue-600 text-white px-4 py-2 rounded shadow-lg"
+          >
+            Test Login as Customer
+          </button>
+        </div>
+      )}
     </div>
   );
 };
