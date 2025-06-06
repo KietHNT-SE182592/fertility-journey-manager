@@ -2,6 +2,7 @@
 import { Heart, Shield, Users, Award, Target, Clock } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BreadcrumbNav from "@/components/Breadcrumb";
 
 const AboutUs = () => {
   const values = [
@@ -37,6 +38,7 @@ const AboutUs = () => {
   return (
     <div className="min-h-screen">
       <Header />
+      <BreadcrumbNav items={[{ label: "About Us" }]} />
       
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-blue-50 to-teal-50">

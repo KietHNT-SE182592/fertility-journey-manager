@@ -17,6 +17,11 @@ import BlogDetail from "./pages/BlogDetail";
 import DoctorsPage from "./pages/DoctorsPage";
 import DoctorDetail from "./pages/DoctorDetail";
 import AboutUs from "./pages/AboutUs";
+import CustomerAppointments from "./pages/CustomerAppointments";
+import CustomerTreatments from "./pages/CustomerTreatments";
+import CustomerTests from "./pages/CustomerTests";
+import CustomerPayments from "./pages/CustomerPayments";
+import CustomerProfile from "./pages/CustomerProfile";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +44,11 @@ const App = () => (
           <Route path="/doctors" element={<DoctorsPage />} />
           <Route path="/doctors/:id" element={<DoctorDetail />} />
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/customer/appointments" element={<CustomerAppointments />} />
+          <Route path="/customer/treatments" element={<CustomerTreatments />} />
+          <Route path="/customer/tests" element={<CustomerTests />} />
+          <Route path="/customer/payments" element={<CustomerPayments />} />
+          <Route path="/customer/profile" element={<CustomerProfile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

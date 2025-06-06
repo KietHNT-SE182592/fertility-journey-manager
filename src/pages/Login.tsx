@@ -17,12 +17,15 @@ const Login = () => {
   const handleLogin = () => {
     // Mock login - in real app would authenticate with backend
     if (username && password && role) {
+      // Store login data in localStorage
+      localStorage.setItem('loginData', JSON.stringify({ username, role }));
+      
       switch (role) {
         case "doctor":
           navigate("/doctor");
           break;
         case "customer":
-          navigate("/customer");
+          navigate("/"); // Stay on homepage for patients
           break;
         case "manager":
           navigate("/manager");
