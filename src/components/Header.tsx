@@ -55,7 +55,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white border-b border-blue-100 sticky top-0 z-50 shadow-sm">
+    <header className="bg-white/80 backdrop-blur-md border-b border-purple-200 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -72,18 +72,18 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center text-gray-700 hover:text-blue-600 transition-colors font-medium">
+              <DropdownMenuTrigger className="flex items-center text-gray-700 hover:text-purple-600 transition-colors font-medium">
                 Services <ChevronDown className="w-4 h-4 ml-1" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 bg-white border border-gray-200 shadow-xl">
+              <DropdownMenuContent className="w-56 bg-white border border-purple-200 shadow-xl">
                 <DropdownMenuItem asChild>
-                  <Link to="/services" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                  <Link to="/services" className="flex items-center px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors">
                     All Services
                   </Link>
                 </DropdownMenuItem>
                 {servicesDropdown.map((item) => (
                   <DropdownMenuItem key={item.name} asChild>
-                    <Link to={item.href} className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                    <Link to={item.href} className="flex items-center px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors">
                       {item.name}
                     </Link>
                   </DropdownMenuItem>
@@ -91,15 +91,15 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Link to="/doctors" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link to="/doctors" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
               Doctors
             </Link>
             
-            <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link to="/blog" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
               Blog
             </Link>
             
-            <Link to="/about-us" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link to="/about-us" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">
               About Us
             </Link>
           </nav>
@@ -109,16 +109,16 @@ const Header = () => {
             {isLoggedIn && userRole === "customer" ? (
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <Avatar className="w-10 h-10 cursor-pointer hover:ring-2 hover:ring-blue-500 transition-all">
-                    <AvatarFallback className="bg-gradient-to-r from-blue-600 to-teal-600 text-white">
+                  <Avatar className="w-10 h-10 cursor-pointer hover:ring-2 hover:ring-purple-400 transition-all">
+                    <AvatarFallback className="bg-gradient-to-r from-purple-light to-blue-light text-gray-800">
                       <User className="w-5 h-5" />
                     </AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56 bg-white border border-gray-200 shadow-xl" align="end">
+                <DropdownMenuContent className="w-56 bg-white border border-purple-200 shadow-xl" align="end">
                   {patientMenuItems.map((item) => (
                     <DropdownMenuItem key={item.name} asChild>
-                      <Link to={item.href} className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                      <Link to={item.href} className="flex items-center px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors">
                         <item.icon className="w-4 h-4 mr-3" />
                         {item.name}
                       </Link>
@@ -132,7 +132,7 @@ const Header = () => {
               </DropdownMenu>
             ) : (
               <Link to="/login">
-                <Button size="sm" className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 shadow-lg">
+                <Button size="sm" className="btn-primary shadow-lg">
                   <LogIn className="w-4 h-4 mr-2" />
                   Login
                 </Button>
@@ -153,12 +153,12 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-blue-100">
+          <div className="md:hidden mt-4 pb-4 border-t border-purple-200">
             <nav className="flex flex-col space-y-3 mt-4">
-              <Link to="/services" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Services</Link>
-              <Link to="/doctors" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Doctors</Link>
-              <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Blog</Link>
-              <Link to="/about-us" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">About Us</Link>
+              <Link to="/services" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Services</Link>
+              <Link to="/doctors" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Doctors</Link>
+              <Link to="/blog" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">Blog</Link>
+              <Link to="/about-us" className="text-gray-700 hover:text-purple-600 transition-colors font-medium">About Us</Link>
             </nav>
             <div className="flex flex-col space-y-2 mt-4">
               {isLoggedIn && userRole === "customer" ? (
@@ -178,7 +178,7 @@ const Header = () => {
                 </div>
               ) : (
                 <Link to="/login">
-                  <Button size="sm" className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700">
+                  <Button size="sm" className="w-full btn-primary">
                     <LogIn className="w-4 h-4 mr-2" />
                     Login
                   </Button>

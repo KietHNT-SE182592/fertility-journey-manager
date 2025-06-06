@@ -14,30 +14,33 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 217 91% 60%;
+    --primary: 255 85% 91%; /* Based on D3D0FB */
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 199 100% 89%; /* Based on C7F1FF */
     --secondary-foreground: 222.2 47.4% 11.2%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 326 78% 68%;
+    --accent: 350 100% 92%; /* Based on FFD8D9 */
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 217 91% 60%;
+    --border: 255 85% 91%;
+    --input: 255 85% 91%;
+    --ring: 255 85% 91%;
 
     --radius: 0.5rem;
 
-    /* Custom brand colors */
-    --brand-blue: 37 82% 60%;
-    --brand-teal: 172 82% 46%;
+    /* Custom palette colors */
+    --pink-light: 350 100% 92%; /* FFD8D9 */
+    --blue-light: 199 100% 89%; /* C7F1FF */
+    --purple-light: 255 85% 91%; /* D3D0FB */
+    --mint-light: 144 95% 90%; /* CDFDE5 */
+    --yellow-light: 60 89% 89%; /* FAFDC6 */
   }
 
   .dark {
@@ -50,7 +53,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91% 60%;
+    --primary: 255 85% 91%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -59,7 +62,7 @@
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 326 78% 68%;
+    --accent: 350 100% 92%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
@@ -67,7 +70,7 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 217 91% 60%;
+    --ring: 255 85% 91%;
   }
 }
 
@@ -79,31 +82,48 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #ffd8d9 0%, #c7f1ff 25%, #d3d0fb 50%, #cdfde5 75%, #fafdc6 100%);
+    min-height: 100vh;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white;
+    background: linear-gradient(135deg, #d3d0fb 0%, #c7f1ff 100%);
+    @apply text-gray-800 hover:opacity-90;
   }
   
   .btn-secondary {
-    @apply bg-white border border-blue-200 text-blue-600 hover:bg-blue-50;
+    @apply bg-white border-2 border-purple-300 text-purple-700 hover:bg-purple-50;
+  }
+  
+  .btn-contact {
+    background: linear-gradient(135deg, #cdfde5 0%, #fafdc6 100%);
+    @apply text-gray-800 hover:opacity-90;
   }
   
   .text-brand {
-    @apply text-blue-600;
+    @apply text-purple-600;
   }
   
   .bg-brand {
-    @apply bg-gradient-to-r from-blue-600 to-teal-600;
+    background: linear-gradient(135deg, #d3d0fb 0%, #c7f1ff 100%);
+  }
+  
+  .card-gradient {
+    background: linear-gradient(135deg, rgba(255, 216, 217, 0.3) 0%, rgba(199, 241, 255, 0.3) 100%);
+    backdrop-filter: blur(10px);
   }
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
+  background: linear-gradient(135deg, #ffd8d9 0%, #c7f1ff 50%, #d3d0fb 100%);
 }
 
 .medical-gradient {
-  background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 50%, #99f6e4 100%);
+  background: linear-gradient(135deg, #cdfde5 0%, #fafdc6 50%, #ffd8d9 100%);
+}
+
+.hero-overlay {
+  background: linear-gradient(135deg, rgba(255, 216, 217, 0.2) 0%, rgba(199, 241, 255, 0.2) 50%, rgba(211, 208, 251, 0.2) 100%);
 }
