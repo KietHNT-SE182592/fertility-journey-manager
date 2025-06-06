@@ -34,6 +34,10 @@
     --ring: 217 91% 60%;
 
     --radius: 0.5rem;
+
+    /* Custom brand colors */
+    --brand-blue: 37 82% 60%;
+    --brand-teal: 172 82% 46%;
   }
 
   .dark {
@@ -75,6 +79,24 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white;
+  }
+  
+  .btn-secondary {
+    @apply bg-white border border-blue-200 text-blue-600 hover:bg-blue-50;
+  }
+  
+  .text-brand {
+    @apply text-blue-600;
+  }
+  
+  .bg-brand {
+    @apply bg-gradient-to-r from-blue-600 to-teal-600;
   }
 }
 

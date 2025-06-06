@@ -54,23 +54,22 @@ const Hero = () => {
   return (
     <>
       <section id="home" className="relative min-h-screen overflow-hidden">
-        {/* Background Image with Overlay */}
+        {/* Background Image without dark overlay */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
           style={{ backgroundImage: `url(${currentSlideData.image})` }}
         >
-          <div className="absolute inset-0 bg-black/40"></div>
         </div>
 
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4 py-20 min-h-screen flex items-center">
-          <div className="max-w-2xl text-white">
+          <div className="max-w-2xl text-white drop-shadow-lg">
             <div className="space-y-8">
               <div>
-                <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6 drop-shadow-md">
                   {currentSlideData.title}
                 </h1>
-                <p className="text-xl leading-relaxed opacity-90">
+                <p className="text-xl leading-relaxed drop-shadow-md">
                   {currentSlideData.subtitle}
                 </p>
               </div>
@@ -78,7 +77,7 @@ const Hero = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-lg px-8"
+                  className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-lg px-8 drop-shadow-lg"
                   onClick={() => handleBookingClick('consultation')}
                 >
                   <Calendar className="w-5 h-5 mr-2" />
@@ -88,9 +87,9 @@ const Hero = () => {
                   <Button 
                     variant="outline" 
                     size="lg" 
-                    className="border-white text-white bg-white/10 text-lg px-8 w-full"
+                    className="border-white text-white bg-white/20 backdrop-blur-sm text-lg px-8 w-full drop-shadow-lg hover:bg-white/30"
                   >
-                    Service
+                    Services
                   </Button>
                 </Link>
               </div>
@@ -98,16 +97,16 @@ const Hero = () => {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 pt-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white">{currentSlideData.stats.success}</div>
-                  <div className="text-sm text-white/80">Success Rate</div>
+                  <div className="text-3xl font-bold text-white drop-shadow-md">{currentSlideData.stats.success}</div>
+                  <div className="text-sm text-white drop-shadow-md">Success Rate</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white">{currentSlideData.stats.families || currentSlideData.stats.cycles || currentSlideData.stats.patients}</div>
-                  <div className="text-sm text-white/80">{currentSlideData.stats.families ? 'Happy Families' : currentSlideData.stats.cycles ? 'Successful Cycles' : 'Satisfied Patients'}</div>
+                  <div className="text-3xl font-bold text-white drop-shadow-md">{currentSlideData.stats.families || currentSlideData.stats.cycles || currentSlideData.stats.patients}</div>
+                  <div className="text-sm text-white drop-shadow-md">{currentSlideData.stats.families ? 'Happy Families' : currentSlideData.stats.cycles ? 'Successful Cycles' : 'Satisfied Patients'}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white">{currentSlideData.stats.experience || currentSlideData.stats.specialists || currentSlideData.stats.years}</div>
-                  <div className="text-sm text-white/80">{currentSlideData.stats.experience ? 'Years Experience' : currentSlideData.stats.specialists ? 'Expert Specialists' : 'Years Serving'}</div>
+                  <div className="text-3xl font-bold text-white drop-shadow-md">{currentSlideData.stats.experience || currentSlideData.stats.specialists || currentSlideData.stats.years}</div>
+                  <div className="text-sm text-white drop-shadow-md">{currentSlideData.stats.experience ? 'Years Experience' : currentSlideData.stats.specialists ? 'Expert Specialists' : 'Years Serving'}</div>
                 </div>
               </div>
             </div>
@@ -120,8 +119,8 @@ const Hero = () => {
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-colors ${
-                currentSlide === index ? 'bg-white' : 'bg-white/40'
+              className={`w-3 h-3 rounded-full transition-colors drop-shadow-lg ${
+                currentSlide === index ? 'bg-white' : 'bg-white/60'
               }`}
             />
           ))}
