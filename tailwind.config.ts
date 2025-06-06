@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,31 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Mom and baby theme colors
+				'brand-rose': {
+					50: '#fef7f7',
+					100: '#fdeef0',
+					200: '#fad4d8',
+					300: '#f5b2bb',
+					400: '#ed8497',
+					500: '#e25976',
+					600: '#d13d5f',
+					700: '#b02847',
+					800: '#922541',
+					900: '#7c213d',
+				},
+				'brand-mint': {
+					50: '#f0fdf4',
+					100: '#dcfce7',
+					200: '#bbf7d0',
+					300: '#86efac',
+					400: '#4ade80',
+					500: '#22c55e',
+					600: '#16a34a',
+					700: '#15803d',
+					800: '#166534',
+					900: '#14532d',
 				}
 			},
 			borderRadius: {

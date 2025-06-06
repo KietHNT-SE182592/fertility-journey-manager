@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { getButtonClass, getTextClass } from "@/lib/colors";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,14 +56,14 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white border-b border-blue-100 sticky top-0 z-50 shadow-sm">
+    <header className="bg-white border-b border-rose-100 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo - Now rectangular */}
           <Link to="/" className="flex-shrink-0">
-            <div className="w-20 h-20 md:w-24 md:h-24 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div className="w-32 h-16 md:w-36 md:h-18 overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <img 
-                src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" 
+                src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=150&q=80" 
                 alt="FertileCare Logo" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
@@ -72,18 +73,18 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center text-gray-700 hover:text-blue-600 transition-colors font-medium">
+              <DropdownMenuTrigger className={`flex items-center ${getTextClass('secondary')} hover:${getTextClass('accent')} transition-colors font-medium`}>
                 Services <ChevronDown className="w-4 h-4 ml-1" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56 bg-white border border-gray-200 shadow-xl">
+              <DropdownMenuContent className="w-56 bg-white border border-rose-200 shadow-xl">
                 <DropdownMenuItem asChild>
-                  <Link to="/services" className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                  <Link to="/services" className={`flex items-center px-4 py-3 ${getTextClass('secondary')} hover:bg-rose-50 hover:${getTextClass('accent')} transition-colors`}>
                     All Services
                   </Link>
                 </DropdownMenuItem>
                 {servicesDropdown.map((item) => (
                   <DropdownMenuItem key={item.name} asChild>
-                    <Link to={item.href} className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                    <Link to={item.href} className={`flex items-center px-4 py-3 ${getTextClass('secondary')} hover:bg-rose-50 hover:${getTextClass('accent')} transition-colors`}>
                       {item.name}
                     </Link>
                   </DropdownMenuItem>
@@ -91,15 +92,15 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Link to="/doctors" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link to="/doctors" className={`${getTextClass('secondary')} hover:${getTextClass('accent')} transition-colors font-medium`}>
               Doctors
             </Link>
             
-            <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link to="/blog" className={`${getTextClass('secondary')} hover:${getTextClass('accent')} transition-colors font-medium`}>
               Blog
             </Link>
             
-            <Link to="/about-us" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link to="/about-us" className={`${getTextClass('secondary')} hover:${getTextClass('accent')} transition-colors font-medium`}>
               About Us
             </Link>
           </nav>
@@ -109,16 +110,16 @@ const Header = () => {
             {isLoggedIn && userRole === "customer" ? (
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <Avatar className="w-10 h-10 cursor-pointer hover:ring-2 hover:ring-blue-500 transition-all">
-                    <AvatarFallback className="bg-gradient-to-r from-blue-600 to-teal-600 text-white">
+                  <Avatar className="w-10 h-10 cursor-pointer hover:ring-2 hover:ring-rose-500 transition-all">
+                    <AvatarFallback className="bg-gradient-to-r from-rose-400 to-pink-500 text-white">
                       <User className="w-5 h-5" />
                     </AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56 bg-white border border-gray-200 shadow-xl" align="end">
+                <DropdownMenuContent className="w-56 bg-white border border-rose-200 shadow-xl" align="end">
                   {patientMenuItems.map((item) => (
                     <DropdownMenuItem key={item.name} asChild>
-                      <Link to={item.href} className="flex items-center px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                      <Link to={item.href} className={`flex items-center px-4 py-3 ${getTextClass('secondary')} hover:bg-rose-50 hover:${getTextClass('accent')} transition-colors`}>
                         <item.icon className="w-4 h-4 mr-3" />
                         {item.name}
                       </Link>
@@ -132,7 +133,7 @@ const Header = () => {
               </DropdownMenu>
             ) : (
               <Link to="/login">
-                <Button size="sm" className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 shadow-lg">
+                <Button size="sm" className={`${getButtonClass('primary')} shadow-lg`}>
                   <LogIn className="w-4 h-4 mr-2" />
                   Login
                 </Button>
@@ -153,12 +154,12 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-blue-100">
+          <div className="md:hidden mt-4 pb-4 border-t border-rose-100">
             <nav className="flex flex-col space-y-3 mt-4">
-              <Link to="/services" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Services</Link>
-              <Link to="/doctors" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Doctors</Link>
-              <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">Blog</Link>
-              <Link to="/about-us" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">About Us</Link>
+              <Link to="/services" className={`${getTextClass('secondary')} hover:${getTextClass('accent')} transition-colors font-medium`}>Services</Link>
+              <Link to="/doctors" className={`${getTextClass('secondary')} hover:${getTextClass('accent')} transition-colors font-medium`}>Doctors</Link>
+              <Link to="/blog" className={`${getTextClass('secondary')} hover:${getTextClass('accent')} transition-colors font-medium`}>Blog</Link>
+              <Link to="/about-us" className={`${getTextClass('secondary')} hover:${getTextClass('accent')} transition-colors font-medium`}>About Us</Link>
             </nav>
             <div className="flex flex-col space-y-2 mt-4">
               {isLoggedIn && userRole === "customer" ? (
@@ -178,7 +179,7 @@ const Header = () => {
                 </div>
               ) : (
                 <Link to="/login">
-                  <Button size="sm" className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700">
+                  <Button size="sm" className={`w-full ${getButtonClass('primary')}`}>
                     <LogIn className="w-4 h-4 mr-2" />
                     Login
                   </Button>
