@@ -1,80 +1,64 @@
 
-// Global color configuration for the FertileCare application - Mom and Baby Theme
+// Global color configuration for the FertileCare application
 export const colors = {
-  // Primary brand colors - Soft pink and peach tones
+  // Primary brand colors
   primary: {
-    50: '#fef7f7',
-    100: '#fdeef0', 
-    200: '#fad4d8',
-    300: '#f5b2bb',
-    400: '#ed8497',
-    500: '#e25976', // Main rose pink
-    600: '#d13d5f', // Primary pink
-    700: '#b02847',
-    800: '#922541',
-    900: '#7c213d',
+    50: '#eff6ff',
+    100: '#dbeafe', 
+    200: '#bfdbfe',
+    300: '#93c5fd',
+    400: '#60a5fa',
+    500: '#3b82f6', // Main blue
+    600: '#2563eb', // Primary blue
+    700: '#1d4ed8',
+    800: '#1e40af',
+    900: '#1e3a8a',
   },
   
-  // Secondary brand colors - Soft blue/lavender
+  // Secondary brand colors (Teal)
   secondary: {
-    50: '#f8fafc',
-    100: '#f1f5f9',
-    200: '#e2e8f0',
-    300: '#cbd5e1',
-    400: '#94a3b8',
-    500: '#64748b',
-    600: '#475569', // Primary secondary
-    700: '#334155',
-    800: '#1e293b',
-    900: '#0f172a',
-  },
-  
-  // Accent colors - Soft mint/sage green
-  accent: {
-    50: '#f0fdf4',
-    100: '#dcfce7',
-    200: '#bbf7d0',
-    300: '#86efac',
-    400: '#4ade80',
-    500: '#22c55e',
-    600: '#16a34a', // Primary accent
-    700: '#15803d',
-    800: '#166534',
-    900: '#14532d',
+    50: '#f0fdfa',
+    100: '#ccfbf1',
+    200: '#99f6e4',
+    300: '#5eead4',
+    400: '#2dd4bf',
+    500: '#14b8a6',
+    600: '#0d9488', // Primary teal
+    700: '#0f766e',
+    800: '#115e59',
+    900: '#134e4a',
   },
   
   // Button configurations
   button: {
-    primary: 'bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white',
-    secondary: 'bg-white border border-rose-200 text-rose-600 hover:bg-rose-50',
-    accent: 'bg-gradient-to-r from-emerald-400 to-green-500 hover:from-emerald-500 hover:to-green-600 text-white',
-    contact: 'bg-gradient-to-r from-purple-400 to-violet-500 hover:from-purple-500 hover:to-violet-600 text-white',
+    primary: 'bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700',
+    secondary: 'bg-white border border-blue-200 text-blue-600 hover:bg-blue-50',
+    accent: 'bg-gradient-to-r from-teal-500 to-blue-500 hover:from-teal-600 hover:to-blue-600',
   },
   
   // Text configurations
   text: {
-    primary: 'text-gray-800',
+    primary: 'text-gray-900',
     secondary: 'text-gray-600',
     muted: 'text-gray-500',
-    accent: 'text-rose-600',
+    accent: 'text-blue-600',
     white: 'text-white',
-    heading: 'text-gray-800',
-    brand: 'text-rose-600',
+    heading: 'text-gray-900',
   },
   
   // Background configurations
   background: {
     primary: 'bg-white',
-    secondary: 'bg-rose-50',
-    accent: 'bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50',
+    secondary: 'bg-gray-50',
+    accent: 'bg-gradient-to-br from-blue-50 to-teal-50',
     card: 'bg-white',
   },
   
   // Border configurations
   border: {
-    light: 'border-rose-100',
-    medium: 'border-rose-200',
-    accent: 'border-rose-300',
+    light: 'border-gray-200',
+    medium: 'border-gray-300',
+    accent: 'border-blue-200',
   },
   
   // Status colors
@@ -87,11 +71,11 @@ export const colors = {
 };
 
 // Utility functions for accessing colors
-export const getButtonClass = (variant: 'primary' | 'secondary' | 'accent' | 'contact' = 'primary') => {
+export const getButtonClass = (variant: 'primary' | 'secondary' | 'accent' = 'primary') => {
   return colors.button[variant];
 };
 
-export const getTextClass = (variant: 'primary' | 'secondary' | 'muted' | 'accent' | 'white' | 'heading' | 'brand' = 'primary') => {
+export const getTextClass = (variant: 'primary' | 'secondary' | 'muted' | 'accent' | 'white' | 'heading' = 'primary') => {
   return colors.text[variant];
 };
 
