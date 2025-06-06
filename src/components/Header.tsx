@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { getButtonClass } from "@/lib/colors";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,11 +59,11 @@ const Header = () => {
     <header className="bg-white border-b border-blue-100 sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo - Changed to rectangular */}
           <Link to="/" className="flex-shrink-0">
-            <div className="w-20 h-20 md:w-24 md:h-24 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div className="w-32 h-20 md:w-36 md:h-24 overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
               <img 
-                src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" 
+                src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80" 
                 alt="FertileCare Logo" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
               />
@@ -110,7 +111,7 @@ const Header = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger>
                   <Avatar className="w-10 h-10 cursor-pointer hover:ring-2 hover:ring-blue-500 transition-all">
-                    <AvatarFallback className="bg-gradient-to-r from-blue-600 to-teal-600 text-white">
+                    <AvatarFallback className={`${getButtonClass('primary')} text-white`}>
                       <User className="w-5 h-5" />
                     </AvatarFallback>
                   </Avatar>
@@ -132,7 +133,7 @@ const Header = () => {
               </DropdownMenu>
             ) : (
               <Link to="/login">
-                <Button size="sm" className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 shadow-lg">
+                <Button size="sm" className={`${getButtonClass('primary')} shadow-lg`}>
                   <LogIn className="w-4 h-4 mr-2" />
                   Login
                 </Button>
@@ -178,7 +179,7 @@ const Header = () => {
                 </div>
               ) : (
                 <Link to="/login">
-                  <Button size="sm" className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700">
+                  <Button size="sm" className={`w-full ${getButtonClass('primary')}`}>
                     <LogIn className="w-4 h-4 mr-2" />
                     Login
                   </Button>

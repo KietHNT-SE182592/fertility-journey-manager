@@ -4,6 +4,7 @@ import { Calendar } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import BookingModal from "./BookingModal";
+import { getHeroClass } from "@/lib/colors";
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -66,10 +67,10 @@ const Hero = () => {
           <div className="max-w-2xl text-white drop-shadow-lg">
             <div className="space-y-8">
               <div>
-                <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6 drop-shadow-md">
+                <h1 className={`text-5xl lg:text-6xl leading-tight mb-6 ${getHeroClass('title')}`}>
                   {currentSlideData.title}
                 </h1>
-                <p className="text-xl leading-relaxed drop-shadow-md">
+                <p className={`text-xl leading-relaxed ${getHeroClass('subtitle')}`}>
                   {currentSlideData.subtitle}
                 </p>
               </div>
@@ -77,7 +78,7 @@ const Hero = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-lg px-8 drop-shadow-lg"
+                  className={`${getHeroClass('button')} text-lg px-8`}
                   onClick={() => handleBookingClick('consultation')}
                 >
                   <Calendar className="w-5 h-5 mr-2" />
@@ -87,7 +88,7 @@ const Hero = () => {
                   <Button 
                     variant="outline" 
                     size="lg" 
-                    className="border-white text-white bg-white/20 backdrop-blur-sm text-lg px-8 w-full drop-shadow-lg hover:bg-white/30"
+                    className={`${getHeroClass('buttonSecondary')} text-lg px-8 w-full`}
                   >
                     Services
                   </Button>
@@ -97,16 +98,16 @@ const Hero = () => {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 pt-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white drop-shadow-md">{currentSlideData.stats.success}</div>
-                  <div className="text-sm text-white drop-shadow-md">Success Rate</div>
+                  <div className={`text-3xl font-bold ${getHeroClass('title')}`}>{currentSlideData.stats.success}</div>
+                  <div className={`text-sm ${getHeroClass('subtitle')}`}>Success Rate</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white drop-shadow-md">{currentSlideData.stats.families || currentSlideData.stats.cycles || currentSlideData.stats.patients}</div>
-                  <div className="text-sm text-white drop-shadow-md">{currentSlideData.stats.families ? 'Happy Families' : currentSlideData.stats.cycles ? 'Successful Cycles' : 'Satisfied Patients'}</div>
+                  <div className={`text-3xl font-bold ${getHeroClass('title')}`}>{currentSlideData.stats.families || currentSlideData.stats.cycles || currentSlideData.stats.patients}</div>
+                  <div className={`text-sm ${getHeroClass('subtitle')}`}>{currentSlideData.stats.families ? 'Happy Families' : currentSlideData.stats.cycles ? 'Successful Cycles' : 'Satisfied Patients'}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white drop-shadow-md">{currentSlideData.stats.experience || currentSlideData.stats.specialists || currentSlideData.stats.years}</div>
-                  <div className="text-sm text-white drop-shadow-md">{currentSlideData.stats.experience ? 'Years Experience' : currentSlideData.stats.specialists ? 'Expert Specialists' : 'Years Serving'}</div>
+                  <div className={`text-3xl font-bold ${getHeroClass('title')}`}>{currentSlideData.stats.experience || currentSlideData.stats.specialists || currentSlideData.stats.years}</div>
+                  <div className={`text-sm ${getHeroClass('subtitle')}`}>{currentSlideData.stats.experience ? 'Years Experience' : currentSlideData.stats.specialists ? 'Expert Specialists' : 'Years Serving'}</div>
                 </div>
               </div>
             </div>
