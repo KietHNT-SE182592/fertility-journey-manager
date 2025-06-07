@@ -35,9 +35,19 @@
 
     --radius: 0.5rem;
 
-    /* Custom brand colors */
-    --brand-blue: 37 82% 60%;
+    /* Custom brand colors for global theming */
+    --brand-blue: 217 91% 60%;
     --brand-teal: 172 82% 46%;
+    --brand-accent: 326 78% 68%;
+    
+    /* Global theme colors - CHANGE THESE TO UPDATE THE ENTIRE PROJECT THEME */
+    --theme-primary: 217 91% 60%;
+    --theme-secondary: 172 82% 46%;
+    --theme-accent: 326 78% 68%;
+    --theme-text-primary: 222.2 84% 4.9%;
+    --theme-text-secondary: 215.4 16.3% 46.9%;
+    --theme-background: 0 0% 100%;
+    --theme-surface: 210 40% 96.1%;
   }
 
   .dark {
@@ -83,6 +93,7 @@
 }
 
 @layer components {
+  /* Global button styles - these will be used across all pages */
   .btn-primary {
     @apply bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white;
   }
@@ -91,19 +102,97 @@
     @apply bg-white border border-blue-200 text-blue-600 hover:bg-blue-50;
   }
   
+  .btn-accent {
+    @apply bg-gradient-to-r from-teal-500 to-blue-500 hover:from-teal-600 hover:to-blue-600 text-white;
+  }
+  
+  /* Global text styles */
   .text-brand {
     @apply text-blue-600;
   }
   
+  .text-brand-secondary {
+    @apply text-teal-600;
+  }
+  
+  .text-brand-accent {
+    @apply text-purple-600;
+  }
+  
+  /* Global background styles */
   .bg-brand {
     @apply bg-gradient-to-r from-blue-600 to-teal-600;
   }
+  
+  .bg-brand-light {
+    @apply bg-gradient-to-br from-blue-50 to-teal-50;
+  }
+  
+  /* Page layout styles */
+  .page-container {
+    @apply min-h-screen bg-white;
+  }
+  
+  .page-section {
+    @apply py-16 bg-white;
+  }
+  
+  .page-section-alt {
+    @apply py-16 bg-gray-50;
+  }
+  
+  /* Card styles for global consistency */
+  .card-primary {
+    @apply bg-white border border-gray-200 shadow-lg hover:shadow-xl transition-shadow rounded-2xl;
+  }
+  
+  .card-gradient {
+    @apply bg-gradient-to-br from-white via-blue-50/30 to-teal-50/30 border border-gray-200 shadow-lg hover:shadow-xl transition-shadow rounded-2xl;
+  }
+  
+  /* Navigation styles */
+  .nav-item {
+    @apply text-gray-700 hover:text-blue-600 transition-colors font-medium px-3 py-2 rounded-lg;
+  }
+  
+  .nav-item-active {
+    @apply text-blue-600 bg-blue-50 font-medium px-3 py-2 rounded-lg;
+  }
+  
+  /* Form styles for global consistency */
+  .form-input {
+    @apply border border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-lg px-4 py-2;
+  }
+  
+  .form-label {
+    @apply text-gray-700 font-medium text-sm;
+  }
+  
+  /* Price display styles */
+  .price-display {
+    @apply text-blue-600 font-bold text-xl;
+  }
+  
+  .price-display-large {
+    @apply text-blue-600 font-bold text-3xl;
+  }
 }
 
+/* Custom gradient backgrounds */
 .gradient-bg {
   background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #bfdbfe 100%);
 }
 
 .medical-gradient {
   background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 50%, #99f6e4 100%);
+}
+
+/* Hero section gradients */
+.hero-gradient {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 25%, #ccfbf1 50%, #99f6e4 75%, #bfdbfe 100%);
+}
+
+/* Service section gradients */
+.service-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #ecfdf5 100%);
 }

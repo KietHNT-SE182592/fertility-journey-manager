@@ -76,6 +76,7 @@ export const colors = {
     card: 'bg-white',
     hero: 'bg-gradient-to-br from-blue-50 via-white to-teal-50',
     section: 'bg-white',
+    page: 'bg-white',
   },
   
   // Border configurations
@@ -108,6 +109,42 @@ export const colors = {
     subtitle: 'text-white drop-shadow-md',
     button: 'bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-medium drop-shadow-lg',
     buttonSecondary: 'border-white text-white bg-white/20 backdrop-blur-sm hover:bg-white/30 font-medium drop-shadow-lg',
+  },
+  
+  // Navigation/Menu specific colors
+  nav: {
+    item: 'text-gray-700 hover:text-blue-600 transition-colors font-medium',
+    itemActive: 'text-blue-600 bg-blue-50 rounded-lg font-medium',
+    itemHover: 'hover:text-blue-600 hover:bg-blue-50 transition-colors',
+    dropdown: 'bg-white border border-gray-200 shadow-xl',
+    dropdownItem: 'text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors',
+  },
+  
+  // Page specific colors
+  page: {
+    background: 'bg-white',
+    container: 'bg-white',
+    section: 'bg-white',
+    sectionAlt: 'bg-gray-50',
+    title: 'text-gray-900 font-bold',
+    subtitle: 'text-gray-600',
+    content: 'text-gray-700',
+  },
+  
+  // Card configurations
+  card: {
+    background: 'bg-white',
+    border: 'border border-gray-200',
+    shadow: 'shadow-lg',
+    hover: 'hover:shadow-xl transition-shadow',
+  },
+  
+  // Form configurations
+  form: {
+    input: 'border border-gray-300 focus:border-blue-500 focus:ring-blue-500',
+    label: 'text-gray-700 font-medium',
+    error: 'text-red-600 text-sm',
+    success: 'text-green-600 text-sm',
   }
 };
 
@@ -120,7 +157,7 @@ export const getTextClass = (variant: 'primary' | 'secondary' | 'muted' | 'accen
   return colors.text[variant];
 };
 
-export const getBackgroundClass = (variant: 'primary' | 'secondary' | 'accent' | 'card' | 'hero' | 'section' = 'primary') => {
+export const getBackgroundClass = (variant: 'primary' | 'secondary' | 'accent' | 'card' | 'hero' | 'section' | 'page' = 'primary') => {
   return colors.background[variant];
 };
 
@@ -138,4 +175,20 @@ export const getHeroClass = (variant: 'title' | 'subtitle' | 'button' | 'buttonS
 
 export const getStatusClass = (variant: 'success' | 'warning' | 'error' | 'info' = 'info') => {
   return colors.status[variant];
+};
+
+export const getNavClass = (variant: 'item' | 'itemActive' | 'itemHover' | 'dropdown' | 'dropdownItem' = 'item') => {
+  return colors.nav[variant];
+};
+
+export const getPageClass = (variant: 'background' | 'container' | 'section' | 'sectionAlt' | 'title' | 'subtitle' | 'content' = 'background') => {
+  return colors.page[variant];
+};
+
+export const getCardClass = (variant: 'background' | 'border' | 'shadow' | 'hover' = 'background') => {
+  return colors.card[variant];
+};
+
+export const getFormClass = (variant: 'input' | 'label' | 'error' | 'success' = 'input') => {
+  return colors.form[variant];
 };
