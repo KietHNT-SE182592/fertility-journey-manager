@@ -1,10 +1,10 @@
 
 import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
+import { Calendar, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import BookingModal from "./BookingModal";
-import { getHeroClass } from "@/lib/colors";
+import { getButtonClass } from "@/lib/colors";
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -16,22 +16,19 @@ const Hero = () => {
       id: 1,
       image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
       title: "Your Journey to Parenthood Starts Here",
-      subtitle: "Advanced fertility treatments with personalized care",
-      stats: { success: "95%", families: "500+", experience: "15+" }
+      subtitle: "Advanced fertility treatments with personalized care"
     },
     {
       id: 2,
       image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
       title: "Expert IVF & IUI Treatments",
-      subtitle: "State-of-the-art laboratory with highest success rates",
-      stats: { success: "92%", cycles: "1000+", specialists: "8+" }
+      subtitle: "State-of-the-art laboratory with highest success rates"
     },
     {
       id: 3,
       image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
       title: "Comprehensive Fertility Solutions",
-      subtitle: "From assessment to successful pregnancy journey",
-      stats: { success: "88%", patients: "2000+", years: "20+" }
+      subtitle: "From assessment to successful pregnancy journey"
     }
   ];
 
@@ -55,7 +52,7 @@ const Hero = () => {
   return (
     <>
       <section id="home" className="relative min-h-screen overflow-hidden">
-        {/* Background Image without dark overlay */}
+        {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
           style={{ backgroundImage: `url(${currentSlideData.image})` }}
@@ -67,10 +64,10 @@ const Hero = () => {
           <div className="max-w-2xl text-white drop-shadow-lg">
             <div className="space-y-8">
               <div>
-                <h1 className={`text-5xl lg:text-6xl leading-tight mb-6 ${getHeroClass('title')}`}>
+                <h1 className="text-5xl lg:text-6xl font-bold leading-tight mb-6 drop-shadow-md">
                   {currentSlideData.title}
                 </h1>
-                <p className={`text-xl leading-relaxed ${getHeroClass('subtitle')}`}>
+                <p className="text-xl leading-relaxed drop-shadow-md">
                   {currentSlideData.subtitle}
                 </p>
               </div>
@@ -78,7 +75,7 @@ const Hero = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
                   size="lg" 
-                  className={`${getHeroClass('button')} text-lg px-8`}
+                  className={`${getButtonClass('primary')} text-lg px-8 drop-shadow-lg`}
                   onClick={() => handleBookingClick('consultation')}
                 >
                   <Calendar className="w-5 h-5 mr-2" />
@@ -88,27 +85,20 @@ const Hero = () => {
                   <Button 
                     variant="outline" 
                     size="lg" 
-                    className={`${getHeroClass('buttonSecondary')} text-lg px-8 w-full`}
+                    className="border-white text-white bg-white/20 backdrop-blur-sm text-lg px-8 w-full drop-shadow-lg hover:bg-white/30"
                   >
                     Services
                   </Button>
                 </Link>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-6 pt-8">
-                <div className="text-center">
-                  <div className={`text-3xl font-bold ${getHeroClass('title')}`}>{currentSlideData.stats.success}</div>
-                  <div className={`text-sm ${getHeroClass('subtitle')}`}>Success Rate</div>
-                </div>
-                <div className="text-center">
-                  <div className={`text-3xl font-bold ${getHeroClass('title')}`}>{currentSlideData.stats.families || currentSlideData.stats.cycles || currentSlideData.stats.patients}</div>
-                  <div className={`text-sm ${getHeroClass('subtitle')}`}>{currentSlideData.stats.families ? 'Happy Families' : currentSlideData.stats.cycles ? 'Successful Cycles' : 'Satisfied Patients'}</div>
-                </div>
-                <div className="text-center">
-                  <div className={`text-3xl font-bold ${getHeroClass('title')}`}>{currentSlideData.stats.experience || currentSlideData.stats.specialists || currentSlideData.stats.years}</div>
-                  <div className={`text-sm ${getHeroClass('subtitle')}`}>{currentSlideData.stats.experience ? 'Years Experience' : currentSlideData.stats.specialists ? 'Expert Specialists' : 'Years Serving'}</div>
-                </div>
+                <Link to="/contact">
+                  <Button 
+                    size="lg" 
+                    className={`${getButtonClass('contact')} text-lg px-8 drop-shadow-lg w-full`}
+                  >
+                    <Phone className="w-5 h-5 mr-2" />
+                    Contact
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

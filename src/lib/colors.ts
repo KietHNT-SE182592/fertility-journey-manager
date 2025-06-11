@@ -1,194 +1,100 @@
 
-// Global color configuration for the FertileCare application
+// Global color configuration for the FertileCare application - Mom and Baby Theme
 export const colors = {
-  // Primary brand colors
+  // Primary brand colors - Soft pink and peach tones
   primary: {
-    50: '#eff6ff',
-    100: '#dbeafe', 
-    200: '#bfdbfe',
-    300: '#93c5fd',
-    400: '#60a5fa',
-    500: '#3b82f6', // Main blue
-    600: '#2563eb', // Primary blue
-    700: '#1d4ed8',
-    800: '#1e40af',
-    900: '#1e3a8a',
+    50: '#fef7f7',
+    100: '#fdeef0', 
+    200: '#fad4d8',
+    300: '#f5b2bb',
+    400: '#ed8497',
+    500: '#e25976', // Main rose pink
+    600: '#d13d5f', // Primary pink
+    700: '#b02847',
+    800: '#922541',
+    900: '#7c213d',
   },
   
-  // Secondary brand colors (Teal)
+  // Secondary brand colors - Soft blue/lavender
   secondary: {
-    50: '#f0fdfa',
-    100: '#ccfbf1',
-    200: '#99f6e4',
-    300: '#5eead4',
-    400: '#2dd4bf',
-    500: '#14b8a6',
-    600: '#0d9488', // Primary teal
-    700: '#0f766e',
-    800: '#115e59',
-    900: '#134e4a',
+    50: '#f8fafc',
+    100: '#f1f5f9',
+    200: '#e2e8f0',
+    300: '#cbd5e1',
+    400: '#94a3b8',
+    500: '#64748b',
+    600: '#475569', // Primary secondary
+    700: '#334155',
+    800: '#1e293b',
+    900: '#0f172a',
   },
   
-  // Accent colors for special elements
+  // Accent colors - Soft mint/sage green
   accent: {
-    50: '#fef7ff',
-    100: '#fce7ff',
-    200: '#f8d2ff',
-    300: '#f1a7ff',
-    400: '#e770ff',
-    500: '#d946ef',
-    600: '#c026d3',
-    700: '#a21caf',
-    800: '#86198f',
-    900: '#701a75',
+    50: '#f0fdf4',
+    100: '#dcfce7',
+    200: '#bbf7d0',
+    300: '#86efac',
+    400: '#4ade80',
+    500: '#22c55e',
+    600: '#16a34a', // Primary accent
+    700: '#15803d',
+    800: '#166534',
+    900: '#14532d',
   },
   
-  // Button configurations - easily customizable
+  // Button configurations
   button: {
-    primary: 'bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-medium',
-    secondary: 'bg-white border border-blue-200 text-blue-600 hover:bg-blue-50 font-medium',
-    accent: 'bg-gradient-to-r from-teal-500 to-blue-500 hover:from-teal-600 hover:to-blue-600 text-white font-medium',
-    outline: 'border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium',
-    ghost: 'text-gray-700 hover:bg-gray-100 font-medium',
+    primary: 'bg-gradient-to-r from-rose-400 to-pink-500 hover:from-rose-500 hover:to-pink-600 text-white',
+    secondary: 'bg-white border border-rose-200 text-rose-600 hover:bg-rose-50',
+    accent: 'bg-gradient-to-r from-emerald-400 to-green-500 hover:from-emerald-500 hover:to-green-600 text-white',
+    contact: 'bg-gradient-to-r from-purple-400 to-violet-500 hover:from-purple-500 hover:to-violet-600 text-white',
   },
   
-  // Text configurations - centralized text styling
+  // Text configurations
   text: {
-    primary: 'text-gray-900',
+    primary: 'text-gray-800',
     secondary: 'text-gray-600',
     muted: 'text-gray-500',
-    accent: 'text-blue-600',
-    brand: 'text-blue-600',
+    accent: 'text-rose-600',
     white: 'text-white',
-    heading: 'text-gray-900 font-bold',
-    subheading: 'text-gray-700 font-semibold',
-    price: 'text-blue-600 font-bold',
-    success: 'text-green-600',
-    warning: 'text-yellow-600',
-    error: 'text-red-600',
+    heading: 'text-gray-800',
+    brand: 'text-rose-600',
   },
   
   // Background configurations
   background: {
     primary: 'bg-white',
-    secondary: 'bg-gray-50',
-    accent: 'bg-gradient-to-br from-blue-50 to-teal-50',
+    secondary: 'bg-rose-50',
+    accent: 'bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50',
     card: 'bg-white',
-    hero: 'bg-gradient-to-br from-blue-50 via-white to-teal-50',
-    section: 'bg-white',
-    page: 'bg-white',
   },
   
   // Border configurations
   border: {
-    light: 'border-gray-200',
-    medium: 'border-gray-300',
-    accent: 'border-blue-200',
-    primary: 'border-blue-300',
+    light: 'border-rose-100',
+    medium: 'border-rose-200',
+    accent: 'border-rose-300',
   },
   
-  // Status colors for alerts, badges, etc.
+  // Status colors
   status: {
     success: 'text-green-600 bg-green-50 border-green-200',
     warning: 'text-yellow-600 bg-yellow-50 border-yellow-200',
     error: 'text-red-600 bg-red-50 border-red-200',
     info: 'text-blue-600 bg-blue-50 border-blue-200',
-  },
-  
-  // Service-specific colors
-  service: {
-    price: 'text-blue-600 font-bold text-xl',
-    title: 'text-gray-900 font-bold text-2xl',
-    description: 'text-gray-600',
-    feature: 'text-gray-700',
-  },
-  
-  // Hero section specific colors
-  hero: {
-    title: 'text-white font-bold drop-shadow-lg',
-    subtitle: 'text-white drop-shadow-md',
-    button: 'bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white font-medium drop-shadow-lg',
-    buttonSecondary: 'border-white text-white bg-white/20 backdrop-blur-sm hover:bg-white/30 font-medium drop-shadow-lg',
-  },
-  
-  // Navigation/Menu specific colors
-  nav: {
-    item: 'text-gray-700 hover:text-blue-600 transition-colors font-medium',
-    itemActive: 'text-blue-600 bg-blue-50 rounded-lg font-medium',
-    itemHover: 'hover:text-blue-600 hover:bg-blue-50 transition-colors',
-    dropdown: 'bg-white border border-gray-200 shadow-xl',
-    dropdownItem: 'text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors',
-  },
-  
-  // Page specific colors
-  page: {
-    background: 'bg-white',
-    container: 'bg-white',
-    section: 'bg-white',
-    sectionAlt: 'bg-gray-50',
-    title: 'text-gray-900 font-bold',
-    subtitle: 'text-gray-600',
-    content: 'text-gray-700',
-  },
-  
-  // Card configurations
-  card: {
-    background: 'bg-white',
-    border: 'border border-gray-200',
-    shadow: 'shadow-lg',
-    hover: 'hover:shadow-xl transition-shadow',
-  },
-  
-  // Form configurations
-  form: {
-    input: 'border border-gray-300 focus:border-blue-500 focus:ring-blue-500',
-    label: 'text-gray-700 font-medium',
-    error: 'text-red-600 text-sm',
-    success: 'text-green-600 text-sm',
   }
 };
 
-// Utility functions for accessing colors easily
-export const getButtonClass = (variant: 'primary' | 'secondary' | 'accent' | 'outline' | 'ghost' = 'primary') => {
+// Utility functions for accessing colors
+export const getButtonClass = (variant: 'primary' | 'secondary' | 'accent' | 'contact' = 'primary') => {
   return colors.button[variant];
 };
 
-export const getTextClass = (variant: 'primary' | 'secondary' | 'muted' | 'accent' | 'brand' | 'white' | 'heading' | 'subheading' | 'price' | 'success' | 'warning' | 'error' = 'primary') => {
+export const getTextClass = (variant: 'primary' | 'secondary' | 'muted' | 'accent' | 'white' | 'heading' | 'brand' = 'primary') => {
   return colors.text[variant];
 };
 
-export const getBackgroundClass = (variant: 'primary' | 'secondary' | 'accent' | 'card' | 'hero' | 'section' | 'page' = 'primary') => {
+export const getBackgroundClass = (variant: 'primary' | 'secondary' | 'accent' | 'card' = 'primary') => {
   return colors.background[variant];
-};
-
-export const getBorderClass = (variant: 'light' | 'medium' | 'accent' | 'primary' = 'light') => {
-  return colors.border[variant];
-};
-
-export const getServiceClass = (variant: 'price' | 'title' | 'description' | 'feature' = 'title') => {
-  return colors.service[variant];
-};
-
-export const getHeroClass = (variant: 'title' | 'subtitle' | 'button' | 'buttonSecondary' = 'title') => {
-  return colors.hero[variant];
-};
-
-export const getStatusClass = (variant: 'success' | 'warning' | 'error' | 'info' = 'info') => {
-  return colors.status[variant];
-};
-
-export const getNavClass = (variant: 'item' | 'itemActive' | 'itemHover' | 'dropdown' | 'dropdownItem' = 'item') => {
-  return colors.nav[variant];
-};
-
-export const getPageClass = (variant: 'background' | 'container' | 'section' | 'sectionAlt' | 'title' | 'subtitle' | 'content' = 'background') => {
-  return colors.page[variant];
-};
-
-export const getCardClass = (variant: 'background' | 'border' | 'shadow' | 'hover' = 'background') => {
-  return colors.card[variant];
-};
-
-export const getFormClass = (variant: 'input' | 'label' | 'error' | 'success' = 'input') => {
-  return colors.form[variant];
 };
