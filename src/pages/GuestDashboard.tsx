@@ -65,8 +65,7 @@ const GuestDashboard = () => {
     setShowBooking(true);
   };
 
-  const handleBookingSubmit = (bookingData: any) => {
-    console.log('Booking submitted:', bookingData);
+  const handleBookingConfirm = (bookingData: any) => {
     setShowBooking(false);
     setShowPayment(true);
   };
@@ -169,8 +168,9 @@ const GuestDashboard = () => {
       {showBooking && (
         <BookingModal
           service={selectedService}
+          doctors={doctors}
           onClose={() => setShowBooking(false)}
-          onSubmit={handleBookingSubmit}
+          onConfirm={handleBookingConfirm}
         />
       )}
 

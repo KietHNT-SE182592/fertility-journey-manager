@@ -3,41 +3,45 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Calendar, Clock, Phone, Mail, User } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { CalendarIcon } from "lucide-react";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 
 interface BookingModalProps {
   service: any;
+  doctors: any[];
   onClose: () => void;
-  onSubmit: (bookingData: any) => void;
+  onConfirm: (bookingData: any) => void;
 }
 
-const BookingModal = ({ service, onClose, onSubmit }: BookingModalProps) => {
+const BookingModal = ({ service, doctors, onClose, onConfirm }: BookingModalProps) => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
+    doctorId: "",
+    date: undefined as Date | undefined,
+    timeSlot: "",
+    notes: "",
+    husbandName: "",
+    wifeName: "",
     phone: "",
-    preferredDate: "",
-    preferredTime: "",
-    consultationType: "initial",
-    message: ""
+    email: ""
   });
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
+  const timeSlots = [
+    "09:00 AM", "10:00 AM", "11:00 AM", "02:00 PM", "03:00 PM", "04:00 PM"
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({
+    onConfirm({
       ...formData,
-      serviceName: service?.name || "General Consultation",
-      servicePrice: service?.price || "Contact for pricing"
+      serviceId: service.id,
+      serviceName: service.name,
+      amount: service.price
     });
   };
 
@@ -45,169 +49,140 @@ const BookingModal = ({ service, onClose, onSubmit }: BookingModalProps) => {
     <Dialog open={true} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-gray-900">
-            Book Your Consultation
-          </DialogTitle>
-          {service && (
-            <div className="bg-blue-50 p-4 rounded-lg mt-4">
-              <h4 className="font-semibold text-blue-900">{service.name}</h4>
-              <p className="text-sm text-blue-700">{service.price}</p>
-            </div>
-          )}
+          <DialogTitle>Book {service.name}</DialogTitle>
         </DialogHeader>
         
-        <form onSubmit={handleSubmit} className="space-y-6 mt-6">
-          {/* Personal Information */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="firstName" className="flex items-center gap-2">
-                <User className="w-4 h-4" />
-                First Name *
-              </Label>
+              <Label htmlFor="husbandName">Husband's Name</Label>
               <Input
-                id="firstName"
-                value={formData.firstName}
-                onChange={(e) => handleInputChange("firstName", e.target.value)}
+                id="husbandName"
+                value={formData.husbandName}
+                onChange={(e) => setFormData({...formData, husbandName: e.target.value})}
                 required
-                className="mt-1"
-                placeholder="Enter your first name"
               />
             </div>
             <div>
-              <Label htmlFor="lastName">Last Name *</Label>
+              <Label htmlFor="wifeName">Wife's Name</Label>
               <Input
-                id="lastName"
-                value={formData.lastName}
-                onChange={(e) => handleInputChange("lastName", e.target.value)}
+                id="wifeName"
+                value={formData.wifeName}
+                onChange={(e) => setFormData({...formData, wifeName: e.target.value})}
                 required
-                className="mt-1"
-                placeholder="Enter your last name"
               />
             </div>
           </div>
 
-          {/* Contact Information */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="email" className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                Email Address *
-              </Label>
+              <Label htmlFor="phone">Phone Number</Label>
+              <Input
+                id="phone"
+                value={formData.phone}
+                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
                 value={formData.email}
-                onChange={(e) => handleInputChange("email", e.target.value)}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
                 required
-                className="mt-1"
-                placeholder="your.email@example.com"
-              />
-            </div>
-            <div>
-              <Label htmlFor="phone" className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                Phone Number *
-              </Label>
-              <Input
-                id="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => handleInputChange("phone", e.target.value)}
-                required
-                className="mt-1"
-                placeholder="(555) 123-4567"
               />
             </div>
           </div>
 
-          {/* Appointment Preferences */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <Label htmlFor="preferredDate" className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                Preferred Date *
-              </Label>
-              <Input
-                id="preferredDate"
-                type="date"
-                value={formData.preferredDate}
-                onChange={(e) => handleInputChange("preferredDate", e.target.value)}
-                required
-                className="mt-1"
-                min={new Date().toISOString().split('T')[0]}
-              />
-            </div>
-            <div>
-              <Label htmlFor="preferredTime" className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
-                Preferred Time *
-              </Label>
-              <select
-                id="preferredTime"
-                value={formData.preferredTime}
-                onChange={(e) => handleInputChange("preferredTime", e.target.value)}
-                required
-                className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="">Select a time</option>
-                <option value="09:00">9:00 AM</option>
-                <option value="10:00">10:00 AM</option>
-                <option value="11:00">11:00 AM</option>
-                <option value="14:00">2:00 PM</option>
-                <option value="15:00">3:00 PM</option>
-                <option value="16:00">4:00 PM</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Consultation Type */}
           <div>
-            <Label htmlFor="consultationType">Type of Consultation</Label>
-            <select
-              id="consultationType"
-              value={formData.consultationType}
-              onChange={(e) => handleInputChange("consultationType", e.target.value)}
-              className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="initial">Initial Consultation</option>
-              <option value="follow-up">Follow-up Appointment</option>
-              <option value="second-opinion">Second Opinion</option>
-              <option value="treatment-planning">Treatment Planning</option>
-            </select>
+            <Label>Select Doctor</Label>
+            <Select value={formData.doctorId} onValueChange={(value) => setFormData({...formData, doctorId: value})}>
+              <SelectTrigger>
+                <SelectValue placeholder="Choose your preferred doctor" />
+              </SelectTrigger>
+              <SelectContent>
+                {doctors.map((doctor) => (
+                  <SelectItem key={doctor.id} value={doctor.id.toString()}>
+                    {doctor.name} - {doctor.specialty}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
-          {/* Additional Message */}
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <Label>Preferred Date</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      "w-full justify-start text-left font-normal",
+                      !formData.date && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {formData.date ? format(formData.date, "PPP") : "Pick a date"}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    mode="single"
+                    selected={formData.date}
+                    onSelect={(date) => setFormData({...formData, date})}
+                    initialFocus
+                    className="pointer-events-auto"
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
+
+            <div>
+              <Label>Time Slot</Label>
+              <Select value={formData.timeSlot} onValueChange={(value) => setFormData({...formData, timeSlot: value})}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select time" />
+                </SelectTrigger>
+                <SelectContent>
+                  {timeSlots.map((slot) => (
+                    <SelectItem key={slot} value={slot}>
+                      {slot}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
           <div>
-            <Label htmlFor="message">Additional Information</Label>
+            <Label htmlFor="notes">Additional Notes</Label>
             <Textarea
-              id="message"
-              value={formData.message}
-              onChange={(e) => handleInputChange("message", e.target.value)}
-              placeholder="Please share any additional information about your fertility journey, concerns, or questions you'd like to discuss during the consultation..."
-              className="mt-1"
-              rows={4}
+              id="notes"
+              value={formData.notes}
+              onChange={(e) => setFormData({...formData, notes: e.target.value})}
+              placeholder="Any specific concerns or questions..."
             />
           </div>
 
-          {/* Form Actions */}
-          <div className="flex space-x-3 pt-4">
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <h4 className="font-semibold mb-2">Booking Summary</h4>
+            <p><strong>Service:</strong> {service.name}</p>
+            <p><strong>Price:</strong> ${service.price}</p>
+            <p className="text-sm text-gray-600 mt-2">
+              Payment will be required to confirm your booking.
+            </p>
+          </div>
+
+          <div className="flex space-x-3">
             <Button type="button" variant="outline" onClick={onClose} className="flex-1">
               Cancel
             </Button>
-            <Button 
-              type="submit" 
-              className="flex-1 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700"
-            >
-              Book Consultation
+            <Button type="submit" className="flex-1 bg-gradient-to-r from-blue-600 to-teal-600">
+              Proceed to Payment
             </Button>
-          </div>
-
-          {/* Privacy Notice */}
-          <div className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg">
-            <p>
-              By submitting this form, you consent to us contacting you via phone or email to confirm your appointment. 
-              Your information is kept strictly confidential and complies with HIPAA regulations.
-            </p>
           </div>
         </form>
       </DialogContent>

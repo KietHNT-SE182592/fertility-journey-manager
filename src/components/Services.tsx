@@ -2,15 +2,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Heart, Microscope, Calendar, TestTube, Users, Shield, ArrowRight } from "lucide-react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import BookingModal from "./BookingModal";
+import { Heart, Microscope, Calendar, TestTube, Users, Shield } from "lucide-react";
 
 const Services = () => {
-  const [showBookingModal, setShowBookingModal] = useState(false);
-  const [selectedService, setSelectedService] = useState(null);
-
   const services = [
     {
       id: 1,
@@ -20,9 +14,7 @@ const Services = () => {
       icon: <Heart className="w-8 h-8" />,
       features: ["Minimal invasive", "Lower cost option", "Natural cycle support", "3-6 cycles recommended"],
       duration: "2-3 weeks per cycle",
-      successRate: "15-20%",
-      image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      detailLink: "/services/iui"
+      successRate: "15-20%"
     },
     {
       id: 2,
@@ -32,9 +24,7 @@ const Services = () => {
       icon: <TestTube className="w-8 h-8" />,
       features: ["Highest success rates", "Genetic screening available", "Frozen embryo transfer", "Personalized protocols"],
       duration: "4-6 weeks per cycle",
-      successRate: "40-60%",
-      image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      detailLink: "/services/ivf"
+      successRate: "40-60%"
     },
     {
       id: 3,
@@ -44,9 +34,7 @@ const Services = () => {
       icon: <Microscope className="w-8 h-8" />,
       features: ["Complete hormone panel", "Ovarian reserve testing", "Semen analysis", "Ultrasound imaging"],
       duration: "1-2 weeks",
-      successRate: "Diagnostic",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      detailLink: "/services/assessment"
+      successRate: "Diagnostic"
     },
     {
       id: 4,
@@ -56,16 +44,9 @@ const Services = () => {
       icon: <Shield className="w-8 h-8" />,
       features: ["Fertility preservation", "Long-term storage", "High survival rates", "Peace of mind"],
       duration: "2-3 weeks",
-      successRate: "85-95% survival",
-      image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      detailLink: "/services/egg-freezing"
+      successRate: "85-95% survival"
     }
   ];
-
-  const handleBooking = (service) => {
-    setSelectedService(service);
-    setShowBookingModal(true);
-  };
 
   return (
     <section id="services" className="py-20 bg-white">
@@ -81,125 +62,79 @@ const Services = () => {
           </p>
         </div>
 
-        {/* Services with Balanced Alternating Layout */}
-        <div className="space-y-20">
-          {services.map((service, index) => {
-            const isEven = index % 2 === 1; // 0-indexed, so second item (index 1) is "even"
-            
-            return (
-              <div key={service.id} className={`flex flex-col lg:flex-row items-stretch gap-0 ${isEven ? 'lg:flex-row-reverse' : ''}`}>
-                {/* Image Section - Equal Height */}
-                <div className="flex-1 relative group overflow-hidden rounded-t-2xl lg:rounded-t-none lg:rounded-l-2xl lg:rounded-r-none">
-                  <div className="h-96 lg:h-full relative overflow-hidden">
-                    <img 
-                      src={service.image} 
-                      alt={service.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-                    
-                    {/* Overlay Content */}
-                    <div className="absolute bottom-6 left-6 right-6">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-white">
-                            {service.icon}
-                          </div>
-                          <div>
-                            <Badge className="bg-white/20 backdrop-blur-sm text-white border-white/30 mb-2">
-                              {service.successRate}
-                            </Badge>
-                            <p className="text-white/90 font-medium">{service.duration}</p>
-                          </div>
-                        </div>
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+          {services.map((service) => (
+            <Card key={service.id} className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-blue-50">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-teal-500 rounded-2xl flex items-center justify-center text-white">
+                      {service.icon}
+                    </div>
+                    <div>
+                      <CardTitle className="text-2xl text-gray-900">{service.name}</CardTitle>
+                      <div className="flex items-center space-x-2 mt-2">
+                        <Badge variant="secondary" className="bg-blue-100 text-blue-700">
+                          {service.successRate}
+                        </Badge>
+                        <Badge variant="outline" className="border-teal-200 text-teal-700">
+                          {service.duration}
+                        </Badge>
                       </div>
                     </div>
                   </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-blue-600">{service.price}</div>
+                  </div>
                 </div>
-
-                {/* Content Section - Equal Height */}
-                <div className="flex-1">
-                  <Card className="h-full border-0 shadow-xl bg-gradient-to-br from-white via-blue-50/30 to-teal-50/30 rounded-b-2xl lg:rounded-b-none lg:rounded-r-2xl lg:rounded-l-none">
-                    <CardHeader className="pb-4">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="space-y-2">
-                          <CardTitle className="text-3xl text-gray-900 mb-2">{service.name}</CardTitle>
-                          <div className="text-3xl font-bold text-blue-600">{service.price}</div>
-                        </div>
-                      </div>
-                      <CardDescription className="text-gray-600 text-lg leading-relaxed">
-                        {service.description}
-                      </CardDescription>
-                    </CardHeader>
-                    
-                    <CardContent className="pt-0">
-                      <div className="space-y-6">
-                        <div>
-                          <h4 className="font-bold text-gray-900 mb-4 text-lg">What's Included:</h4>
-                          <div className="grid grid-cols-1 gap-3">
-                            {service.features.map((feature, idx) => (
-                              <div key={idx} className="flex items-center text-gray-700">
-                                <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-teal-500 rounded-full mr-4 flex-shrink-0"></div>
-                                <span className="text-base">{feature}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        
-                        <div className="flex flex-col sm:flex-row gap-3 pt-6">
-                          <Button 
-                            className="flex-1 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-base py-6"
-                            onClick={() => handleBooking(service)}
-                          >
-                            <Calendar className="w-5 h-5 mr-2" />
-                            Book Consultation
-                          </Button>
-                          <Link to={service.detailLink} className="flex-1">
-                            <Button variant="outline" className="w-full border-blue-200 text-blue-700 hover:bg-blue-50 text-base py-6">
-                              <ArrowRight className="w-5 h-5 mr-2" />
-                              Learn More
-                            </Button>
-                          </Link>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                <CardDescription className="text-gray-600 text-base leading-relaxed">
+                  {service.description}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-3">What's Included:</h4>
+                    <ul className="space-y-2">
+                      {service.features.map((feature, index) => (
+                        <li key={index} className="flex items-center text-gray-700">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="flex space-x-3 pt-4">
+                    <Button className="flex-1 bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700">
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Book Consultation
+                    </Button>
+                    <Button variant="outline" className="border-blue-200 text-blue-700 hover:bg-blue-50">
+                      Learn More
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
         {/* CTA Section */}
-        <div className="mt-20 text-center bg-gradient-to-r from-blue-50 to-teal-50 rounded-3xl p-12">
+        <div className="mt-16 text-center bg-gradient-to-r from-blue-50 to-teal-50 rounded-3xl p-12">
           <h3 className="text-3xl font-bold text-gray-900 mb-4">
             Not Sure Which Treatment is Right for You?
           </h3>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
             Our fertility specialists will help you understand your options and create a personalized treatment plan.
           </p>
-          <Button 
-            size="lg" 
-            className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-lg px-8"
-            onClick={() => handleBooking({ name: "General Consultation", price: "Free" })}
-          >
+          <Button size="lg" className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-lg px-8">
             <Users className="w-5 h-5 mr-2" />
             Schedule Free Consultation
           </Button>
         </div>
       </div>
-
-      {/* Booking Modal */}
-      {showBookingModal && (
-        <BookingModal
-          service={selectedService}
-          onClose={() => setShowBookingModal(false)}
-          onSubmit={(bookingData) => {
-            console.log('Booking submitted:', bookingData);
-            setShowBookingModal(false);
-          }}
-        />
-      )}
     </section>
   );
 };
