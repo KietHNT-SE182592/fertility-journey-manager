@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Settings, Users, Calendar, FileText, Star, TestTube, BarChart3, TrendingUp, User, DollarSign } from "lucide-react";
+import { Settings, Users, Calendar, FileText, Star, TestTube, BarChart3, TrendingUp, User, DollarSign, Heart } from "lucide-react";
 import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from "recharts";
 import {
   Sidebar,
