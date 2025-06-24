@@ -6,11 +6,13 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar, TestTube, Heart, Star, FileText, Clock } from "lucide-react";
 import FeedbackModal from "@/components/customer/FeedbackModal";
+import TreatmentPlanDetails from "@/components/customer/TreatmentPlanDetails";
 
 const CustomerDashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const [showFeedback, setShowFeedback] = useState(false);
   const [selectedTreatment, setSelectedTreatment] = useState<any>(null);
+  const [selectedPlanForDetails, setSelectedPlanForDetails] = useState<any>(null);
 
   const treatmentPlans = [
     {
@@ -63,6 +65,19 @@ const CustomerDashboard = () => {
     setSelectedTreatment(treatment);
     setShowFeedback(true);
   };
+
+  const handleViewPlanDetails = (plan: any) => {
+    setSelectedPlanForDetails(plan);
+  };
+
+  if (selectedPlanForDetails) {
+    return (
+      <TreatmentPlanDetails 
+        treatmentPlan={selectedPlanForDetails} 
+        onBack={() => setSelectedPlanForDetails(null)} 
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-teal-50">
@@ -177,7 +192,7 @@ const CustomerDashboard = () => {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="grid md:grid-cols-2 gap-4 mb-4">
                       <div>
                         <p className="text-sm text-gray-600">Start Date</p>
                         <p className="font-semibold">{plan.startDate}</p>
@@ -203,6 +218,13 @@ const CustomerDashboard = () => {
                         </div>
                       </div>
                     </div>
+                    <Button 
+                      onClick={() => handleViewPlanDetails(plan)}
+                      className="bg-gradient-to-r from-blue-600 to-teal-600"
+                    >
+                      <FileText className="w-4 h-4 mr-2" />
+                      View Treatment Details
+                    </Button>
                   </CardContent>
                 </Card>
               ))}

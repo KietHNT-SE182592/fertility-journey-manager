@@ -8,9 +8,11 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Heart, Plus, Search, Calendar, User } from "lucide-react";
+import TreatmentPlanDetails from "./TreatmentPlanDetails";
 
 const TreatmentPlanManagement = () => {
   const [showCreatePlan, setShowCreatePlan] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<any>(null);
 
   const treatmentPlans = [
     {
@@ -46,6 +48,19 @@ const TreatmentPlanManagement = () => {
     console.log("Creating treatment plan");
     setShowCreatePlan(false);
   };
+
+  const handleViewDetails = (plan: any) => {
+    setSelectedPlan(plan);
+  };
+
+  if (selectedPlan) {
+    return (
+      <TreatmentPlanDetails 
+        treatmentPlan={selectedPlan} 
+        onBack={() => setSelectedPlan(null)} 
+      />
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -148,11 +163,15 @@ const TreatmentPlanManagement = () => {
                 <div className="flex space-x-3">
                   {plan.status === "In Progress" ? (
                     <>
-                      <Button size="sm" className="bg-gradient-to-r from-blue-600 to-teal-600">
-                        Update Progress
+                      <Button 
+                        size="sm" 
+                        className="bg-gradient-to-r from-blue-600 to-teal-600"
+                        onClick={() => handleViewDetails(plan)}
+                      >
+                        Manage Treatment Details
                       </Button>
                       <Button variant="outline" size="sm">
-                        View Details
+                        Contact Patient
                       </Button>
                     </>
                   ) : plan.status === "Pending Confirmation" ? (
@@ -165,7 +184,11 @@ const TreatmentPlanManagement = () => {
                       </Button>
                     </>
                   ) : (
-                    <Button variant="outline" size="sm">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => handleViewDetails(plan)}
+                    >
                       View Completed Plan
                     </Button>
                   )}

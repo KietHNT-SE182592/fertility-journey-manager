@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Heart, Menu, User, Calendar } from "lucide-react";
+import { Heart, Menu, LogIn, Calendar } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -33,21 +33,10 @@ const Header = () => {
 
           {/* Action Buttons */}
           <div className="hidden md:flex items-center space-x-3">
-            <Link to="/guest">
-              <Button variant="outline" size="sm" className="border-blue-200 text-blue-700 hover:bg-blue-50">
-                <User className="w-4 h-4 mr-2" />
-                Guest Access
-              </Button>
-            </Link>
-            <Link to="/doctor">
-              <Button variant="outline" size="sm" className="border-green-200 text-green-700 hover:bg-green-50">
-                Doctor Portal
-              </Button>
-            </Link>
-            <Link to="/customer">
+            <Link to="/login">
               <Button size="sm" className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700">
-                <Calendar className="w-4 h-4 mr-2" />
-                Customer Portal
+                <LogIn className="w-4 h-4 mr-2" />
+                Login
               </Button>
             </Link>
           </div>
@@ -74,21 +63,10 @@ const Header = () => {
               <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
             </nav>
             <div className="flex flex-col space-y-2 mt-4">
-              <Link to="/guest">
-                <Button variant="outline" size="sm" className="w-full border-blue-200 text-blue-700 hover:bg-blue-50">
-                  <User className="w-4 h-4 mr-2" />
-                  Guest Access
-                </Button>
-              </Link>
-              <Link to="/doctor">
-                <Button variant="outline" size="sm" className="w-full border-green-200 text-green-700 hover:bg-green-50">
-                  Doctor Portal
-                </Button>
-              </Link>
-              <Link to="/customer">
+              <Link to="/login">
                 <Button size="sm" className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Customer Portal
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Login
                 </Button>
               </Link>
             </div>
